@@ -1,0 +1,26 @@
+#pane{
+    -fx-background-image: url("../assets/croppedMap.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
+}
+
+.airport:hover{
+    -fx-opacity: 0.9;
+}
+
+.ship-route{
+    -fx-stroke-dash-array: 5;
+    -fx-stroke: #1d74a3;
+}
+
+.air-route{
+    -fx-stroke-dash-array: 5;
+    -fx-stroke: #a31d31;
+}
+
+.ship-stop{
+    -fx-fill: #1d74a3;
+    -fx-stroke: #1d74a3;
+}

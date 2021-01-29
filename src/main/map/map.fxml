@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="mainWindowContainer" maxHeight="635.0" prefHeight="597.0" prefWidth="1100.0" stylesheets="@../styles/map.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.map.MapController">
+   <children>
+      <GridPane id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="594.0" minWidth="1000.0" prefHeight="596.0" prefWidth="1100.0" stylesheets="@../styles/map.css">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="1099.6" minWidth="10.0" prefWidth="1099.6" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="448.99998474121094" minWidth="0.0" prefWidth="0.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="569.4" minHeight="10.0" prefHeight="569.4" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="128.40000000000003" minHeight="0.0" prefHeight="30.200000000000045" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <VBox prefHeight="36.0" prefWidth="1038.0" GridPane.rowIndex="1">
+               <children>
+                <Button fx:id="openControlPanelButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="32.0" maxWidth="1.7976931348623157E308" minWidth="592.0" mnemonicParsing="false" onAction="#openControlPanel" prefHeight="32.0" prefWidth="1100.0" text="Open Control Panel" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+            <AnchorPane fx:id="mapObjectsHolder" prefHeight="200.0" prefWidth="200.0" stylesheets="@../styles/map.css">
+               <children>
+
+               <ImageView fitHeight="32.0" fitWidth="36.0" layoutX="392.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true" styleClass="airport">
+                  <image>
+                     <Image url="@../assets/airport.png" />
+                  </image>
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+               </ImageView>
+               <ImageView fitHeight="32.0" fitWidth="36.0" layoutX="589.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true" styleClass="airport">
+                  <image>
+                     <Image url="@../assets/airport.png" />
+                  </image>
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+               </ImageView>
+               <ImageView fitHeight="32.0" fitWidth="36.0" layoutX="918.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true" styleClass="airport">
+                  <image>
+                     <Image url="@../assets/airport.png" />
+                  </image>
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+               </ImageView>
+               <ImageView fitHeight="32.0" fitWidth="36.0" layoutX="311.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true" styleClass="airport">
+                  <image>
+                     <Image url="@../assets/airport.png" />
+                  </image>
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+               </ImageView>
+               <ImageView fitHeight="32.0" fitWidth="36.0" layoutX="76.0" layoutY="156.0" pickOnBounds="true" preserveRatio="true" styleClass="airport">
+                  <image>
+                     <Image url="@../assets/airport.png" />
+                  </image>
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+               </ImageView>
+               <ImageView fitHeight="32.0" fitWidth="36.0" layoutX="194.0" layoutY="258.0" pickOnBounds="true" preserveRatio="true" styleClass="airport">
+                  <image>
+                     <Image url="@../assets/airport.png" />
+                  </image>
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+               </ImageView>
+               <ImageView fitHeight="32.0" fitWidth="36.0" layoutX="359.0" layoutY="378.0" pickOnBounds="true" preserveRatio="true" styleClass="airport">
+                  <image>
+                     <Image url="@../assets/airport.png" />
+                  </image>
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+               </ImageView>
+               <ImageView fitHeight="32.0" fitWidth="36.0" layoutX="577.0" layoutY="441.0" pickOnBounds="true" preserveRatio="true" styleClass="airport">
+                  <image>
+                     <Image url="@../assets/airport.png" />
+                  </image>
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+               </ImageView>
+               <ImageView fitHeight="32.0" fitWidth="36.0" layoutX="529.0" layoutY="223.0" pickOnBounds="true" preserveRatio="true" styleClass="airport">
+                  <image>
+                     <Image url="@../assets/airport.png" />
+                  </image>
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+               </ImageView>
+               <ImageView fitHeight="32.0" fitWidth="36.0" layoutX="649.0" layoutY="297.0" pickOnBounds="true" preserveRatio="true" styleClass="airport">
+                  <image>
+                     <Image url="@../assets/airport.png" />
+                  </image>
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+               </ImageView>
+               <ImageView fitHeight="32.0" fitWidth="36.0" layoutX="825.0" layoutY="281.0" pickOnBounds="true" preserveRatio="true" styleClass="airport">
+                  <image>
+                     <Image url="@../assets/airport.png" />
+                  </image>
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+               </ImageView>
+               <ImageView fitHeight="32.0" fitWidth="36.0" layoutX="922.0" layoutY="451.0" pickOnBounds="true" preserveRatio="true" styleClass="airport">
+                  <image>
+                     <Image url="@../assets/airport.png" />
+                  </image>
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+               </ImageView>
+                  <Line endX="173.70001220703125" endY="247.70709228515625" fill="BLACK" layoutX="389.0" layoutY="303.0" startX="6.0" startY="-80.0" stroke="#1d74a3" styleClass="ship-route" />
+                  <Line endX="100.0" startX="-100.0" />
+                  <Line endX="301.0" endY="-78.0" layoutX="524.0" layoutY="519.0" startX="-128.29998779296875" startY="31.0" styleClass="ship-route" />
+                  <Circle fill="#1d74a3" layoutX="395.0" layoutY="223.0" radius="5.0" stroke="#1d74a3" strokeType="INSIDE" styleClass="ship-stop" />
+                  <Circle fill="#1d74a3" layoutX="825.0" layoutY="441.0" radius="5.0" stroke="#1d74a3" strokeType="INSIDE" styleClass="ship-stop" />
+                  <Circle fill="#1d74a3" layoutX="563.0" layoutY="551.0" radius="5.0" stroke="#1d74a3" strokeType="INSIDE" styleClass="ship-stop" />
+                  <Circle fill="#1d74a3" layoutX="399.0" layoutY="551.0" radius="5.0" stroke="#1d74a3" strokeType="INSIDE" styleClass="ship-stop" />
+                  <Circle fill="#1d74a3" layoutX="861.0" layoutY="551.0" radius="5.0" stroke="#1d74a3" strokeType="INSIDE" styleClass="ship-stop" />
+                  <Circle fill="#1d74a3" layoutX="359.0" layoutY="334.0" radius="5.0" stroke="#1d74a3" strokeType="INSIDE" styleClass="ship-stop" />
+                  <Circle fill="#1d74a3" layoutX="529.0" layoutY="171.0" radius="5.0" stroke="#1d74a3" strokeType="INSIDE" styleClass="ship-stop" />
+                  <Circle fill="#1d74a3" layoutX="64.0" layoutY="436.0" radius="5.0" stroke="#1d74a3" strokeType="INSIDE" styleClass="ship-stop" />
+                  <Circle fill="#1d74a3" layoutX="194.0" layoutY="551.0" radius="5.0" stroke="#1d74a3" strokeType="INSIDE" styleClass="ship-stop" />
+                  <Circle fill="#1d74a3" layoutX="94.0" layoutY="284.0" radius="5.0" stroke="#1d74a3" strokeType="INSIDE" styleClass="ship-stop" />
+                  <Circle fill="#1d74a3" layoutX="253.0" layoutY="383.0" radius="5.0" stroke="#1d74a3" strokeType="INSIDE" styleClass="ship-stop" />
+                  <Line endX="-40.0" endY="21.0" fill="BLACK" layoutX="399.0" layoutY="313.0" startX="130.0" startY="-142.0" stroke="#1d74a3" styleClass="ship-route" />
+                  <Line endX="-315.0" endY="-39.0" fill="BLACK" layoutX="409.0" layoutY="323.0" startX="-214.99998474121094" startY="228.0" stroke="#1d74a3" styleClass="ship-route" />
+                  <Line endX="-165.99998474121094" endY="50.0" fill="BLACK" layoutX="419.0" layoutY="333.0" startX="-355.0" startY="103.0" stroke="#1d74a3" styleClass="ship-route" />
+                  <Line endX="-70.0" endY="-9.0" fill="BLACK" layoutX="429.0" layoutY="343.0" startX="-175.99998474121094" startY="40.0" stroke="#1d74a3" styleClass="ship-route" />
+                  <Line endX="-335.0" endY="-59.0" fill="BLACK" layoutX="429.0" layoutY="343.0" startX="-365.70709228515625" startY="93.70709228515625" stroke="#1d74a3" styleClass="ship-route" />
+                  <Line endX="-234.99998474121094" endY="213.0" fill="BLACK" layoutX="429.0" layoutY="343.0" startX="-365.0" startY="93.0" stroke="#1d74a3" styleClass="ship-route" />
+                  <Line endX="-302.70709228515625" endY="-70.29290771484375" fill="BLACK" layoutX="555.0" layoutY="454.0" startX="-360.2928466796875" startY="97.7071533203125" stroke="#1d74a3" styleClass="ship-route" />
+                  <Line endX="-166.0" endY="87.0" fill="BLACK" layoutX="565.0" layoutY="464.0" startX="-371.0" startY="87.0" stroke="#1d74a3" styleClass="ship-route" />
+                  <Line endX="-322.70709228515625" endY="-90.29290771484375" fill="BLACK" layoutX="575.0" layoutY="474.0" startX="-481.70709228515625" startY="-191.50711059570312" stroke="#1d74a3" styleClass="ship-route" />
+                  <Line endX="90.0" endY="-182.0" fill="BLACK" layoutX="439.0" layoutY="353.0" startX="-44.70709228515625" startY="-130.7071075439453" stroke="#1d74a3" styleClass="ship-route" />
+                  <Line endX="-54.0" endY="-140.0" fill="BLACK" layoutX="449.0" layoutY="363.0" startX="-90.70709228515625" startY="-28.29290771484375" stroke="#1d74a3" styleClass="ship-route" />
+                  <Line endX="-12.0" endY="77.0" fill="BLACK" layoutX="575.0" layoutY="474.0" startX="-176.0" startY="77.0" stroke="#1d74a3" styleClass="ship-route" />
+                  <Line endX="276.00006103515625" endY="67.0" fill="BLACK" layoutX="585.0" layoutY="484.0" startX="-21.5" startY="67.5" stroke="#1d74a3" styleClass="ship-route" />
+                  <Line endX="230.70703125" endY="-64.70712280273438" fill="BLACK" layoutX="595.0" layoutY="505.0" startX="266.7071533203125" startY="47.2071533203125" stroke="#1d74a3" styleClass="ship-route" />
+               </children>
+
+            </AnchorPane>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>
