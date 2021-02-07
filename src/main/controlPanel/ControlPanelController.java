@@ -13,6 +13,8 @@ import main.ShipStop;
 import main.map.Map;
 import main.vehicles.*;
 
+import java.io.IOException;
+
 
 public class ControlPanelController {
     @FXML
@@ -59,7 +61,7 @@ public class ControlPanelController {
     }
 
 
-    public void createPassengerPlane() {
+    public void createPassengerPlane() throws IOException {
         int id = map.getPlanesIdGenerator();
         Airport startingAirport =  map.getCivilianAirports().getRandomElement();
         Point startingPosition = startingAirport.getCenter();
@@ -71,9 +73,11 @@ public class ControlPanelController {
 
         PassengerPlane newPlane = new PassengerPlane(startingPosition, id, maxCapacity, personnelsCount, passengersCount, airRoute);
         map.getPassengerPlanes().addElement(newPlane);
+        Thread t = new Thread(newPlane);
+        t.start();
     }
 
-    public void createMilitaryAircraft() {
+    public void createMilitaryAircraft() throws IOException {
         int id = map.getPlanesIdGenerator();
         int personnelCount = (int) militaryPlanePersonnelCount.getValue();
 
@@ -95,11 +99,13 @@ public class ControlPanelController {
 
         MilitaryAircraft newPlane = new MilitaryAircraft(startingPosition, id, armament, personnelCount, airRoute);
         map.getMilitaryAircrafts().addElement(newPlane);
+        Thread t = new Thread(newPlane);
+        t.start();
     }
 
-    public void createCruiseShip() {
+    public void createCruiseShip() throws IOException {
         int id = map.getShipsIdGenerator();
-        double maxVelocity = cruiseShipVelocity.getValue();
+        double speed = cruiseShipVelocity.getValue();
         ShipStop startingShipStop = map.getShipStops().getRandomElement();
         Point currentPosition = startingShipStop.getPosition();
         ShipStop destination = startingShipStop.getNeighbours().getRandomElement();
@@ -108,20 +114,28 @@ public class ControlPanelController {
         int passengersCount = (int) cruiseShipPassengersCount.getValue();
         int maxCapacity = (int) cruiseShipCapacity.getValue();
 
-        CruiseShip ship = new CruiseShip(id, maxVelocity, currentPosition, destination, brand, passengersCount, maxCapacity);
+        CruiseShip ship = new CruiseShip(id, speed, currentPosition, startingShipStop, destination, brand, passengersCount, maxCapacity);
         map.getCruiseShips().addElement(ship);
+
+        Map.getMapController().getVehiclesHolder().getChildren().add(ship.getCircle());
+        Thread t = new Thread(ship);
+        t.start();
     }
 
-    public void createAircraftCarrier() {
+    public void createAircraftCarrier() throws IOException {
         int id = map.getShipsIdGenerator();
-        double maxVelocity = aircraftCarrierVelocity.getValue();
+        double speed = aircraftCarrierVelocity.getValue();
 
         ShipStop startingShipStop = map.getShipStops().getRandomElement();
         Point currentPosition = startingShipStop.getPosition();
         ShipStop destination = startingShipStop.getNeighbours().getRandomElement();
         String armament = aircraftCarrierArmament.getText();
 
-        AircraftCarrier ship = new AircraftCarrier(id, maxVelocity, currentPosition, destination, armament);
+        AircraftCarrier ship = new AircraftCarrier(id, speed, currentPosition, startingShipStop, destination, armament);
         map.getAircraftCarriers().addElement(ship);
+
+        Map.getMapController().getVehiclesHolder().getChildren().add(ship.getCircle());
+        Thread t = new Thread(ship);
+        t.start();
     }
 }

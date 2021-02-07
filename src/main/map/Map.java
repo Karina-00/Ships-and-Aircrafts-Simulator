@@ -9,22 +9,23 @@ public final class Map{
 
     private static final Map instance = new Map();
 
-    private final Storage<Airport> militaryAirports = new Storage<Airport>();
-    private final Storage<Airport> civilianAirports = new Storage<Airport>();
+    private Storage<Airport> militaryAirports = new Storage<Airport>();
+    private Storage<Airport> civilianAirports = new Storage<Airport>();
 
-    private final Storage<ShipStop> shipStops = new Storage<ShipStop>();
+    private Storage<ShipStop> shipStops = new Storage<ShipStop>();
 
-    private final Storage<AirRoute> flightRoutes = new Storage<AirRoute>();
-    private final Storage<ShipRoute> shipRoutes = new Storage<ShipRoute>();
+    private Storage<AirRoute> flightRoutes = new Storage<AirRoute>();
 
-    private final Storage<PassengerPlane> passengerPlanes = new Storage<PassengerPlane>();
-    private final Storage<MilitaryAircraft> militaryAircrafts = new Storage<MilitaryAircraft>();
+    private Storage<PassengerPlane> passengerPlanes = new Storage<PassengerPlane>();
+    private Storage<MilitaryAircraft> militaryAircrafts = new Storage<MilitaryAircraft>();
 
-    private final Storage<AircraftCarrier> aircraftCarriers = new Storage<AircraftCarrier>();
-    private final Storage<CruiseShip> cruiseShips = new Storage<CruiseShip>();
+    private Storage<AircraftCarrier> aircraftCarriers = new Storage<AircraftCarrier>();
+    private Storage<CruiseShip> cruiseShips = new Storage<CruiseShip>();
 
     private int planesIdGenerator = 1;
     private int shipsIdGenerator = 1;
+
+    private static MapController mapController;
 
     private Map() {
         System.out.println("Map created");
@@ -60,10 +61,6 @@ public final class Map{
         return flightRoutes;
     }
 
-    public Storage<ShipRoute> getShipRoutes() {
-        return shipRoutes;
-    }
-
     public Storage<PassengerPlane> getPassengerPlanes() {
         return passengerPlanes;
     }
@@ -78,6 +75,14 @@ public final class Map{
 
     public Storage<CruiseShip> getCruiseShips() {
         return cruiseShips;
+    }
+
+    public static MapController getMapController() {
+        return mapController;
+    }
+
+    public static void setMapController(MapController mC){
+        mapController = mC;
     }
 
     public Airport getClosestAirport(Point p, boolean military){
@@ -99,5 +104,12 @@ public final class Map{
             }
         }
         return closestAirport;
+    }
+
+    public void reset(){
+        this.cruiseShips = new Storage<>();
+        this.passengerPlanes = new Storage<>();
+        this.aircraftCarriers = new Storage<>();
+        this.militaryAircrafts = new Storage<>();
     }
 }

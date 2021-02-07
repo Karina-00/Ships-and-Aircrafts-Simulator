@@ -1,19 +1,24 @@
 package main.vehicles;
 
+import javafx.scene.paint.Color;
 import main.Point;
 import main.ShipStop;
-import main.vehicles.Ship;
+
+import java.io.IOException;
+
 
 public class CruiseShip extends Ship {
     private int passengersCount;
     private int maxCapacity;
     private String brand;
 
-    public CruiseShip(int id, double maxVelocity, Point currentPosition, ShipStop destination, String brand, int passengersCount, int maxCapacity) {
-        super(id, maxVelocity, currentPosition, destination);
+
+    public CruiseShip(int id, double speed, Point currentPosition, ShipStop startingShipStop, ShipStop destination, String brand, int passengersCount, int maxCapacity) throws IOException {
+        super(id, speed, currentPosition, startingShipStop, destination);
         this.brand = brand;
         this.passengersCount = passengersCount;
         this.maxCapacity = maxCapacity;
+        this.setObjectColor(Color.ORANGE);
     }
 
     public int getPassengersCount() {
@@ -23,7 +28,6 @@ public class CruiseShip extends Ship {
     public void setPassengersCount(int passengersCount) {
         this.passengersCount = passengersCount;
     }
-
 
     public int getMaxCapacity() {
         return maxCapacity;
@@ -36,10 +40,4 @@ public class CruiseShip extends Ship {
     public void setBrand(String brand) {
         this.brand = brand;
     }
-
-
-    public void draw(){
-        System.out.println("Drawing Ship");
-    }
-
 }

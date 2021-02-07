@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import main.map.Map;
+import main.map.MapController;
 
 import java.util.concurrent.TimeUnit;
 
@@ -17,24 +18,17 @@ public class Main extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent mapScene = FXMLLoader.load(getClass().getResource("map/map.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("map/map.fxml"));
+        Parent mapScene = (Parent) fxmlLoader.load();
         primaryStage.setTitle("Map");
         Scene scene = new Scene(mapScene);
         primaryStage.setScene(scene);
         primaryStage.setX(400);
         primaryStage.setY(100);
-        primaryStage.show();
+        MapController mapController = (MapController) fxmlLoader.getController();
+        Map.setMapController(mapController);
 
-//        Map map = Map.getInstance();
-//        int i = 100;
-//        while(i > 0){
-//            System.out.println("Military Planes: " + map.getMilitaryAircrafts().getElements().size());
-//            System.out.println("Civilian Planes: " + map.getPassengerPlanes().getElements().size());
-//            System.out.println("Cruise Ships: " + map.getCruiseShips().getElements().size());
-//            System.out.println("Military Ships: " + map.getAircraftCarriers().getElements().size());
-////            TimeUnit.SECONDS.sleep(10);
-//            i--;
-//        }
+        primaryStage.show();
     }
 
     public static void main(String[] args) {

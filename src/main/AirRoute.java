@@ -20,11 +20,19 @@ public class AirRoute extends Route {
         } else{
             this.pair = new Pair<Airport,Airport>(a2 , a1);
         }
-
     }
 
-    public AirRoute(Airport airport){ // DO POPRAwy
-        // zamiast tego w mapie albo lotnisku generować losowy ciąg lotnisk!
+    public AirRoute(Airport a1){
+        Airport a2 = a1.getConnectedAirports().getRandomElement();
+        this.pair = new Pair<Airport,Airport>(a1 , a2);
+    }
+
+    public Airport getElement(int index){
+        if(index == 0){
+            return pair.getKey();
+        } else{
+            return pair.getValue();
+        }
     }
 }
 
