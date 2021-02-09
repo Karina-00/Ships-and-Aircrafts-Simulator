@@ -14,7 +14,7 @@ public class PassengerPlane extends Plane {
         super(currentPosition, id, personnelCount, route);
         this.maxCapacity = maxCapacity;
         this.passengersCount = passengersCount;
-//        this.setObjectColor(Color.ORANGE);
+        this.setObjectColor(Color.RED);
     }
 
     public int getMaxCapacity() {
@@ -31,9 +31,5 @@ public class PassengerPlane extends Plane {
 
     public void setPassengersCount(int passengersCount) {
         this.passengersCount = passengersCount;
-    }
-
-    public void draw(){
-        System.out.println("Drawing plane");
     }
 }

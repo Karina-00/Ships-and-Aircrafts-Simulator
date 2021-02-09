@@ -9,18 +9,15 @@ import java.util.Objects;
 
 public class MilitaryAircraft extends Plane {
     private final String armament;
+    private int currentAirportDestinationIndex = 0;
 
     public MilitaryAircraft(Point currentPosition, int id, String armament, int personnelCount, AirRoute route) throws IOException {
         super(currentPosition, id, personnelCount, route);
         this.armament = Objects.requireNonNullElse(armament, "Versatile armament");
-//        this.setObjectColor(Color.GREEN);
+        this.setObjectColor(Color.BLACK);
     }
 
     public String getArmament() {
         return armament;
-    }
-
-    public void draw(){
-        System.out.println("Drawing plane");
     }
 }

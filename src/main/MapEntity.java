@@ -32,7 +32,7 @@ public class MapEntity {
             width = this.radius * 2;
             height = this.radius * 2;
         }
-        return new Point(x + width/2, y + height/2, radius);
+        return new Point(x + width/2, y + height/2);
     }
 
     public Point getPosition() {

@@ -40,4 +40,5 @@ public class CruiseShip extends Ship {
     public void setBrand(String brand) {
         this.brand = brand;
     }
+
 }

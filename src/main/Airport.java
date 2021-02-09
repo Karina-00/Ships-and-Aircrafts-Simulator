@@ -50,4 +50,9 @@ public class Airport extends MapEntity{
     public boolean isMilitary() {
         return isMilitary;
     }
+
+    @Override
+    public String toString() {
+        return "Airport id = " + id;
+    }
 }

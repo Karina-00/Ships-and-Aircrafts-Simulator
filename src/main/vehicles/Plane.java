@@ -1,5 +1,7 @@
 package main.vehicles;
 
+import javafx.application.Platform;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
@@ -10,6 +12,7 @@ import javafx.scene.text.Text;
 import main.AirRoute;
 import main.Airport;
 import main.Point;
+import main.ShipStop;
 import main.map.Map;
 
 import java.io.IOException;
@@ -18,33 +21,63 @@ public class Plane extends Vehicle {
     private int personnelCount;
     private float fuelLevel;
     private AirRoute route;
-    private Airport nextAirport;
+    private SimpleObjectProperty<Airport> destinationObservable;
+    private Airport destination;
+    private int currentAirportIndex = 1;
+    private boolean gettingBack = false;
 
     public Plane(Point currentPosition, int id, int personnelCount, AirRoute route) throws IOException {
         super(currentPosition, id);
         this.personnelCount = personnelCount;
         this.route = route;
-        this.nextAirport = route.getElement(1);
-        this.setTarget(nextAirport.getCenter());
+        this.destination = route.getAirportsList().get(currentAirportIndex);
+        this.destinationObservable = new SimpleObjectProperty<Airport>(destination);
+        this.setTarget(destination.getCenter());
+
     }
 
-    @Override
-    public void run() {
+    private void chooseNewDestination() {
+        if(gettingBack){
+            currentAirportIndex++;
+        } else{
+            currentAirportIndex--;
+        }
 
-        while (!Map.getInstance().getPassengerPlanes().getElements().isEmpty() ||
-                !Map.getInstance().getMilitaryAircrafts().getElements().isEmpty()) {
-            try {
-                System.out.println("running" + getId());
-                move();
-                draw();
-                Thread.sleep(100);
-            } catch (InterruptedException ex) {
-                Thread.currentThread().interrupt();
-            }
+        if(currentAirportIndex >= route.getAirportsList().size()){
+            gettingBack = true;
+            currentAirportIndex -= 2;
+        } else if(currentAirportIndex < 0){
+            gettingBack = false;
+            currentAirportIndex += 2;
+        }
+
+        this.destination = route.getAirportsList().get(currentAirportIndex);
+        Platform.runLater(()->{
+            this.destinationObservable.set(destination);
+        });
+        this.setTarget(destination.getCenter());
+    }
+
+    public void move() {
+        Point position = this.getCurrentPosition();
+        Point target = destination.getCenter();
+
+        double deltaX = position.getDeltaX(target);
+        double deltaY = position.getDeltaY(target);
+        double direction = Math.atan2(deltaY, deltaX);
+
+        double newX = position.getX() + (this.getSpeed() * Math.cos(direction));
+        double newY = position.getY() + (this.getSpeed() * Math.sin(direction));
+
+        this.updatePosition(newX, newY);
+
+        if (this.getCurrentPosition().calculateDistance(target) < 1) {
+            chooseNewDestination();
         }
     }
 
-    private void move() {
+    protected SimpleObjectProperty<Airport> getDestinationObservable(){
+        return destinationObservable;
     }
 
     public int getPersonnelCount() {
@@ -71,50 +104,17 @@ public class Plane extends Vehicle {
         this.route = route;
     }
 
-    public Airport getNextAirport() {
-        return nextAirport;
-    }
-
-    public void setNextAirport(Airport nextAirport) {
-        this.nextAirport = nextAirport;
-    }
-
-    @Override
-    protected VBox vehicleViewPanelContent() {
-        VBox vbox = new VBox();
-        vbox.setPadding(new Insets(10));
-        vbox.setSpacing(8);
-
-        Text title = new Text("Ship");
-        title.setFont(Font.font("Arial", FontWeight.BOLD, 14));
-        vbox.getChildren().add(title);
-
-        Label x = new Label();
-        Label y = new Label();
-        Label destinationLabel = new Label();
-        if(this.getCurrentPosition().aProperty() != null){
-            x.textProperty().bind(this.getCurrentPosition().aProperty().asString());
-            y.textProperty().bind(this.getCurrentPosition().bProperty().asString());
-//            destinationLabel.textProperty().bind(this.destinationObservable.asString());
-        }else {
-            x.textProperty().unbind();
-            y.textProperty().unbind();
-        }
-//
-        Label parameters[] = new Label[]{
-                new Label("Ship ID: " + this.getId()),
-                new Label("Position X: " ),
+    protected Label[] getLabels(Label x, Label y, Label destination){
+        return new Label[]{
+                new Label("Plane ID: " + this.getId()),
+                new Label("Coordinate X:"),
                 x,
-                new Label("Position Y: " ),
+                new Label("Coordinate Y:" ),
                 y,
-                new Label("Destination: "),
-                destinationLabel,
+                new Label("Destination point:"),
+                destination,
+                new Label("PersonnelCount:"),
+                new Label(String.valueOf(personnelCount)),
         };
-
-        for (int i=0; i<7; i++) {
-            VBox.setMargin(parameters[i], new Insets(0, 0, 0, 8));
-            vbox.getChildren().add(parameters[i]);
-        }
-        return vbox;
     }
 }

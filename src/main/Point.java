@@ -2,8 +2,6 @@ package main;
 
 import javafx.application.Platform;
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.StringProperty;
-import javafx.beans.value.ObservableValue;
 
 public class Point {
     private double x;
@@ -23,6 +21,8 @@ public class Point {
     public Point(double x, double y) {
         this.x = x;
         this.y = y;
+        this.a = new SimpleDoubleProperty(x);
+        this.b = new SimpleDoubleProperty(y);
     }
 
     public double calculateDistance(Point p){
@@ -48,7 +48,6 @@ public class Point {
             String str = String.format("%1.2f", y);
             this.b.set(Double.parseDouble(str));
         });
-
     }
 
     public double getA() {

@@ -107,9 +107,25 @@ public final class Map{
     }
 
     public void reset(){
+        resetStorage();
         this.cruiseShips = new Storage<>();
         this.passengerPlanes = new Storage<>();
         this.aircraftCarriers = new Storage<>();
         this.militaryAircrafts = new Storage<>();
+    }
+
+    private void resetStorage(){
+        for (Vehicle vehicle: cruiseShips.getElements()) {
+            vehicle.stopRunning();
+        }
+        for (Vehicle vehicle: aircraftCarriers.getElements()) {
+            vehicle.stopRunning();
+        }
+        for (Vehicle vehicle: passengerPlanes.getElements()) {
+            vehicle.stopRunning();
+        }
+        for (Vehicle vehicle: militaryAircrafts.getElements()) {
+            vehicle.stopRunning();
+        }
     }
 }

@@ -232,10 +232,10 @@ public class MapController {
 
 
     public void startSimulation() throws InterruptedException {
-        simulationStep();
-
-        Movement n = new Movement();
-//        n.handle();
+//        simulationStep();
+//
+//        Movement n = new Movement();
+////        n.handle();
     }
 
     public void pauseSimulation() {
@@ -243,14 +243,13 @@ public class MapController {
     }
 
     public void simulationStep() {
-        simulation.move();
-        simulation.draw();
+//        simulation.move();
+//        simulation.draw();
     }
 
 
     public void resetSimulation() {
         map.reset();
         simulation.resetSimulation();
-//        simulation = new Simulation(mapObjectsHolder);
     }
 }

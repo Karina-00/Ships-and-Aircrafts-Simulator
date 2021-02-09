@@ -1,11 +1,13 @@
 package main.vehicles;
 
-import javafx.collections.ObservableList;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -13,15 +15,20 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.util.Pair;
 import main.Point;
+import main.map.Map;
 
 import java.io.IOException;
+
+import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
+
 
 public abstract class Vehicle implements Runnable{
     private final Point currentPosition;
     private final int id;
-    private double speed = 10.0;
+    private double speed = 5.0;
     private Circle circle = new Circle();
     private Point target;
+    boolean running = true;
 
     public Vehicle(Point currentPosition, int id) throws IOException {
         this.currentPosition = currentPosition;
@@ -34,10 +41,37 @@ public abstract class Vehicle implements Runnable{
         openVehiclesView();
     }
 
-    protected abstract VBox vehicleViewPanelContent();
 
     @Override
-    public void run() {}
+    public void run() {
+        try{
+            while (running) {
+                try {
+                    System.out.println("running" + getId());
+                    move();
+                    draw();
+                    Thread.sleep(100);
+                } catch (InterruptedException ex) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        } catch(IndexOutOfBoundsException e) {
+            e.printStackTrace();
+            System.out.println("ERRORORORO");
+        }
+    }
+
+    public void stopRunning() {
+        this.running = false;
+    }
+
+    public abstract void move();
+
+    public void draw() {
+        circle.setCenterX(currentPosition.getX());
+        circle.setCenterY(currentPosition.getY());
+    }
+
 
     public Point getCurrentPosition() {
         return currentPosition;
@@ -78,7 +112,7 @@ public abstract class Vehicle implements Runnable{
     }
 
     public void setTarget(Point target) {
-        this.target = target;
+        this.target = new Point(target.getX(), target.getY());
     }
 
     public int getId() {
@@ -101,6 +135,32 @@ public abstract class Vehicle implements Runnable{
         this.speed = speed;
     }
 
+    protected abstract Label[] getLabels(Label x, Label y, Label destination);
+
+    protected abstract SimpleObjectProperty<?> getDestinationObservable();
+
+    protected VBox vehicleViewPanelContent() {
+        VBox vbox = new VBox();
+        Label x = new Label();
+        Label y = new Label();
+        Label destinationLabel = new Label();
+        if(this.getCurrentPosition().aProperty() != null){
+            x.textProperty().bind(this.getCurrentPosition().aProperty().asString());
+            y.textProperty().bind(this.getCurrentPosition().bProperty().asString());
+            destinationLabel.textProperty().bind(this.getDestinationObservable().asString());
+        }else {
+            x.textProperty().unbind();
+            y.textProperty().unbind();
+        }
+        Label[] labels = getLabels(x, y, destinationLabel);
+
+        for (Label label: labels) {
+            VBox.setMargin(label, new Insets(5, 5, 10, 10));
+            vbox.getChildren().add(label);
+        }
+        return vbox;
+    }
+
     private void openVehiclesView() throws IOException {
         EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
             @Override
@@ -114,23 +174,14 @@ public abstract class Vehicle implements Runnable{
                 }
                 Stage stage = new Stage();
                 Group group = new Group();
-                ObservableList list = group.getChildren();
-                list.add(vehicleViewPanelContent());
-
                 Scene scene = new Scene(group);
+                group.getChildren().add(vehicleViewPanelContent());
                 stage.setScene(scene);
-                stage.setTitle("Vehicle view");
-
+                stage.setTitle("Vehicle info");
                 stage.show();
                 stage.setMinWidth(200);
             }
         };
-        getCircle().addEventFilter(javafx.scene.input.MouseEvent.MOUSE_CLICKED, eventHandler);
+        getCircle().addEventFilter(MOUSE_CLICKED, eventHandler);
     }
-
-    public void draw() {
-        circle.setCenterX(currentPosition.getX());
-        circle.setCenterY(currentPosition.getY());
-    }
-
 }
