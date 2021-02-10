@@ -17,7 +17,7 @@
             <VBox layoutX="19.0" layoutY="85.0" prefHeight="1114.0" prefWidth="278.0">
                <children>
 
-                  <VBox fx:id="PassengerPlanePanel" prefHeight="290.0" prefWidth="278.0">
+                  <VBox prefHeight="290.0" prefWidth="278.0">
                      <children>
 
                         <Label prefHeight="30.0" prefWidth="160.0" text="Passenger Plane">
@@ -42,7 +42,7 @@
                      </children>
                   </VBox>
 
-                  <VBox fx:id="MilitaryPlanePanel" prefHeight="208.0" prefWidth="278.0">
+                  <VBox prefHeight="208.0" prefWidth="278.0">
                      <children>
                         <Label prefHeight="30.0" prefWidth="160.0" text="Military Plane">
                            <font>
@@ -62,7 +62,7 @@
                      </children>
                   </VBox>
 
-                  <VBox fx:id="CruiseShipPanel" prefHeight="346.0" prefWidth="278.0">
+                  <VBox prefHeight="346.0" prefWidth="278.0">
                      <children>
                         <Label prefHeight="30.0" prefWidth="160.0" text="Cruise Ship">
                            <font>
@@ -91,7 +91,7 @@
                         </Button>
                      </children>
                   </VBox>
-                  <VBox fx:id="AircraftCarrier" prefHeight="250.0" prefWidth="278.0">
+                  <VBox prefHeight="250.0" prefWidth="278.0">
                      <children>
                         <Label prefHeight="30.0" prefWidth="160.0" text="Aircraft Carrier">
                            <font>

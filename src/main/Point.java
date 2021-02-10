@@ -8,7 +8,7 @@ public class Point {
     private double y;
     SimpleDoubleProperty a;
     SimpleDoubleProperty b;
-    private double radius = 5.0;
+    private double radius = 7.0;
 
     public Point(double x, double y, double radius) {
         this.x = x;
@@ -50,16 +50,8 @@ public class Point {
         });
     }
 
-    public double getA() {
-        return a.get();
-    }
-
     public SimpleDoubleProperty aProperty() {
         return a;
-    }
-
-    public double getB() {
-        return b.get();
     }
 
     public SimpleDoubleProperty bProperty() {
@@ -84,9 +76,5 @@ public class Point {
 
     public double getRadius() {
         return radius;
-    }
-
-    public void setRadius(double radius) {
-        this.radius = radius;
     }
 }

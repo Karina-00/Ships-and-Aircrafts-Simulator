@@ -163,16 +163,21 @@
                   <Line endX="276.00006103515625" endY="67.0" fill="BLACK" layoutX="585.0" layoutY="484.0" startX="-21.5" startY="67.5" stroke="#1d74a3" styleClass="ship-route" />
                   <Line endX="230.70703125" endY="-64.70712280273438" fill="BLACK" layoutX="595.0" layoutY="505.0" startX="266.7071533203125" startY="47.2071533203125" stroke="#1d74a3" styleClass="ship-route" />
 
-                  <AnchorPane fx:id="vehiclesHolder" prefHeight="568.0" prefWidth="1100.0" >
+                  <AnchorPane fx:id="vehiclesHolder" prefHeight="568.0" prefWidth="1100.0">
                      <children>
 
                      </children>
                   </AnchorPane>
 
-                  <Button layoutX="13.0" layoutY="506.0" mnemonicParsing="false" onAction="#startSimulation" prefHeight="26.0" prefWidth="101.0" text="Start simulation" />
-                  <Button layoutX="11.0" layoutY="533.0" mnemonicParsing="false" onAction="#pauseSimulation" text="Pause simulation" />
-                  <Button layoutX="14.0" layoutY="483.0" mnemonicParsing="false" onAction="#resetSimulation" text="Reset" />
-                  <Button layoutX="11.0" layoutY="460.0" mnemonicParsing="false" text="Step" />
+                  <Button layoutX="14.0" layoutY="537.0" mnemonicParsing="false" onAction="#resetSimulation" text="Reset Simulation" />
+                  <Circle fill="BROWN" layoutX="10.0" layoutY="30.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Label layoutX="30.0" layoutY="2.0" text="Passenger Plane" />
+                  <Circle fill="ORANGE" layoutX="10.0" layoutY="50.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Label layoutX="30.0" layoutY="23.0" text="Military Aircraft" />
+                  <Circle fill="GREEN" layoutX="10.0" layoutY="70.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Label layoutX="30.0" layoutY="43.0" text="Cruise Ship" />
+                  <Circle fill="#1f93ff" layoutX="10.0" layoutY="10.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Label layoutX="30.0" layoutY="63.0" text="Aircraft Carrier" />
                </children>
 
             </AnchorPane>

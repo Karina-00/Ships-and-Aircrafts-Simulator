@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
-import javafx.scene.shape.Circle;
 import main.AirRoute;
 import main.Airport;
 import main.Point;
@@ -71,7 +70,7 @@ public class ControlPanelController {
         int personnelsCount = (int) passengerPlanePersonnelCount.getValue();
         int passengersCount = (int) passengerPlanePassengersCount.getValue();
 
-        AirRoute airRoute = new AirRoute(startingAirport); // Do poprawienia!
+        AirRoute airRoute = new AirRoute(startingAirport);
 
         PassengerPlane plane = new PassengerPlane(startingPosition, id, maxCapacity, personnelsCount, passengersCount, airRoute);
         map.getPassengerPlanes().addElement(plane);

@@ -16,7 +16,6 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.util.Pair;
 import main.Point;
-import main.Simulation;
 import main.map.Map;
 
 import java.io.IOException;
@@ -35,7 +34,7 @@ public abstract class Vehicle implements Runnable{
     public Vehicle(Point currentPosition, int id) throws IOException {
         this.currentPosition = currentPosition;
         this.id = id;
-        circle.setFill(Color.BLUE);
+//        circle.setFill(Color.BLUE);
         circle.setStroke(Color.BLACK);
         circle.setCenterX(currentPosition.getX());
         circle.setCenterY(currentPosition.getY());
@@ -46,23 +45,17 @@ public abstract class Vehicle implements Runnable{
 
     @Override
     public void run() {
-        try{
-            while (running) {
-                try {
-                    System.out.println("running" + getId());
-                    move();
-                    draw();
-                    Thread.sleep(100);
-                } catch (InterruptedException ex) {
-                    System.out.println("LALAL");
-                    Thread.currentThread().interrupt();
-                }
+        while(running){
+            try {
+                System.out.println("running " + getId());
+                move();
+                draw();
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
             }
-            Map.getMapController().deleteObject(circle);
-        } catch(IndexOutOfBoundsException e) {
-            e.printStackTrace();
-            System.out.println("ERRORORORO");
         }
+        Map.getMapController().deleteObject(circle);
     }
 
     public void stopRunning() {
@@ -83,7 +76,6 @@ public abstract class Vehicle implements Runnable{
 
     public void updatePosition(double newX, double newY) {
         Pair<Double, Double> xy = this.checkOvershoot(newX, newY);
-
         this.currentPosition.setX(xy.getKey());
         this.currentPosition.setY(xy.getValue());
     }
