@@ -1,45 +1,69 @@
 package main;
 
-import javafx.util.Pair;
-import main.vehicles.Vehicle;
+import main.map.Map;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedList;
 
 public class AirRoute extends Route {
     private double length;
-    private Pair<Airport, Airport> pair;
-    private boolean isOneLane;
-//    private List<Vehicle> vehicles = new ArrayList<Vehicle>();
     private final ArrayList<Airport> airportOrderList = new ArrayList<>();
 
-    public AirRoute(Airport a1, Airport a2) {
-        this.isOneLane = Math.random() < 0.1;
-        this.length = 0;
-        if(Math.min(a1.getId(), a2.getId()) == a1.getId()){
-            this.pair = new Pair<Airport,Airport>(a1 , a2);
-        } else{
-            this.pair = new Pair<Airport,Airport>(a2 , a1);
-        }
+
+    public AirRoute(Airport startingAirport){
+        generateAirRoute(startingAirport);
+        calculateLength();
     }
 
-    public AirRoute(Airport a1){
-        Airport a2 = a1.getConnectedAirports().getRandomElement();
-        this.airportOrderList.add(a1);
-        this.airportOrderList.add(a2);
-        this.pair = new Pair<Airport,Airport>(a1 , a2);
+    private void generateAirRoute(Airport source){
+        Map map = Map.getInstance();
+        Airport target;
+        if(source.isMilitary()){
+            target = getTargetAirport(map.getMilitaryAirports(), source);
+        } else{
+            target = getTargetAirport(map.getCivilianAirports(), source);
+        }
+        Dijkstra dijkstra = new Dijkstra(map.getAirportConnections().getElements());
+
+        dijkstra.execute(source);
+        LinkedList<Airport> path = dijkstra.getPath(target);
+
+        for (Airport airport : path) {
+            System.out.println(airport);
+            this.airportOrderList.add(airport);
+        }
+
+        System.out.println(path.size() + "   " + airportOrderList.size());
+    }
+
+    private Airport getTargetAirport(Storage<Airport> list, Airport source){
+        if(list.getElements().size() < 2){
+            return null;
+        }
+        Airport target;
+        do {
+            target = list.getRandomElement();
+        } while(target.getId() == source.getId());
+        return target;
+    }
+
+    private void calculateLength(){
+        double len = 0;
+        for(int i = 0; i < airportOrderList.size()-1; i++){
+            Airport current = airportOrderList.get(i);
+            Airport next = airportOrderList.get(i+1);
+            AirportConnection connection = current.getAirportConnection(next.getId());
+            len += connection.getLength();
+        }
+        this.length = len;
+    }
+
+    public double getLength() {
+        return length;
     }
 
     public ArrayList<Airport> getAirportsList() {
         return airportOrderList;
-    }
-
-    public Airport getElement(int index){
-        if(index == 0){
-            return pair.getKey();
-        } else{
-            return pair.getValue();
-        }
     }
 }
 

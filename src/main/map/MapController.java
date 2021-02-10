@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
@@ -134,8 +135,8 @@ public class MapController {
     }
 
     private void connectTwoAirports(Airport a1, Airport a2) {
-        a1.getConnectedAirports().addElement(a2);
-        a2.getConnectedAirports().addElement(a1);
+        a1.addConnectedAirport(a2);
+        a2.addConnectedAirport(a1);
         drawLine(a1, a2);
     }
 
@@ -251,5 +252,9 @@ public class MapController {
     public void resetSimulation() {
         map.reset();
         simulation.resetSimulation();
+    }
+
+    public void deleteObject(Circle c){
+        simulation.deleteObject(c);
     }
 }

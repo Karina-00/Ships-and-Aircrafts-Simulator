@@ -1,5 +1,6 @@
 package main.vehicles;
 
+import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import main.AirRoute;
 import main.Point;
@@ -9,7 +10,6 @@ import java.util.Objects;
 
 public class MilitaryAircraft extends Plane {
     private final String armament;
-    private int currentAirportDestinationIndex = 0;
 
     public MilitaryAircraft(Point currentPosition, int id, String armament, int personnelCount, AirRoute route) throws IOException {
         super(currentPosition, id, personnelCount, route);
@@ -19,5 +19,9 @@ public class MilitaryAircraft extends Plane {
 
     public String getArmament() {
         return armament;
+    }
+
+    protected Label armamentLabel(){
+        return new Label("Military Aircraft\nArmament: " + armament);
     }
 }

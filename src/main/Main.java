@@ -1,14 +1,16 @@
 package main;
 
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import main.map.Map;
 import main.map.MapController;
 
-import java.util.concurrent.TimeUnit;
 
 public class Main extends Application{
 
@@ -29,6 +31,12 @@ public class Main extends Application{
         Map.setMapController(mapController);
 
         primaryStage.show();
+        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent we) {
+                Platform.exit();
+                System.exit(0);
+            }
+        });
     }
 
     public static void main(String[] args) {

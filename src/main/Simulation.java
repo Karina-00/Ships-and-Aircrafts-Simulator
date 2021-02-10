@@ -1,6 +1,8 @@
 package main;
 
+import javafx.application.Platform;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Circle;
 import main.map.Map;
 
 public class Simulation {
@@ -10,9 +12,10 @@ public class Simulation {
 
     private static final Simulation instance = new Simulation();
 
-    public Simulation(){}
+    public Simulation() {
+    }
 
-    public Simulation(AnchorPane mapPane){
+    public Simulation(AnchorPane mapPane) {
         this.pane = mapPane;
     }
 
@@ -20,8 +23,13 @@ public class Simulation {
         return instance;
     }
 
-
-    public void resetSimulation(){
+    public void resetSimulation() {
         this.pane.getChildren().clear();
+    }
+
+    public void deleteObject(Circle c) {
+        Platform.runLater(() -> {
+            this.pane.getChildren().remove(c);
+        });
     }
 }

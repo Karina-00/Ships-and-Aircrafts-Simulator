@@ -7,6 +7,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
@@ -15,6 +16,7 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.util.Pair;
 import main.Point;
+import main.Simulation;
 import main.map.Map;
 
 import java.io.IOException;
@@ -52,9 +54,11 @@ public abstract class Vehicle implements Runnable{
                     draw();
                     Thread.sleep(100);
                 } catch (InterruptedException ex) {
+                    System.out.println("LALAL");
                     Thread.currentThread().interrupt();
                 }
             }
+            Map.getMapController().deleteObject(circle);
         } catch(IndexOutOfBoundsException e) {
             e.printStackTrace();
             System.out.println("ERRORORORO");
@@ -151,6 +155,7 @@ public abstract class Vehicle implements Runnable{
         }else {
             x.textProperty().unbind();
             y.textProperty().unbind();
+            destinationLabel.textProperty().unbind();
         }
         Label[] labels = getLabels(x, y, destinationLabel);
 
@@ -159,6 +164,17 @@ public abstract class Vehicle implements Runnable{
             vbox.getChildren().add(label);
         }
         return vbox;
+    }
+
+    private Button deleteVehicleButton(){
+        Button button = new Button("Delete Vehicle");
+        button.addEventFilter(MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                stopRunning();
+            }
+        });
+        return button;
     }
 
     private void openVehiclesView() throws IOException {
@@ -176,6 +192,7 @@ public abstract class Vehicle implements Runnable{
                 Group group = new Group();
                 Scene scene = new Scene(group);
                 group.getChildren().add(vehicleViewPanelContent());
+                group.getChildren().add(deleteVehicleButton());
                 stage.setScene(scene);
                 stage.setTitle("Vehicle info");
                 stage.show();

@@ -14,7 +14,7 @@ public final class Map{
 
     private Storage<ShipStop> shipStops = new Storage<ShipStop>();
 
-    private Storage<AirRoute> flightRoutes = new Storage<AirRoute>();
+    private Storage<AirportConnection> airportConnections = new Storage<AirportConnection>();
 
     private Storage<PassengerPlane> passengerPlanes = new Storage<PassengerPlane>();
     private Storage<MilitaryAircraft> militaryAircrafts = new Storage<MilitaryAircraft>();
@@ -53,12 +53,13 @@ public final class Map{
         return civilianAirports;
     }
 
-    public Storage<ShipStop> getShipStops() {
-        return shipStops;
+    public Storage<AirportConnection> getAirportConnections() {
+        return airportConnections;
     }
 
-    public Storage<AirRoute> getFlightRoutes() {
-        return flightRoutes;
+
+    public Storage<ShipStop> getShipStops() {
+        return shipStops;
     }
 
     public Storage<PassengerPlane> getPassengerPlanes() {
@@ -85,15 +86,18 @@ public final class Map{
         mapController = mC;
     }
 
-    public Airport getClosestAirport(Point p, boolean military){
+    public Airport getClosestAirport(Point p, Boolean military){
         double minDistance = Double.MAX_VALUE;
         Airport closestAirport = null;
-        ArrayList<Airport> airportsList;
+        ArrayList<Airport> airportsList = new ArrayList<>();
 
-        if (military){
-            airportsList = this.militaryAirports.getElements();
+        if (military == null){
+            airportsList.addAll(this.militaryAirports.getElements());
+            airportsList.addAll(this.civilianAirports.getElements());
+        } else if (military){
+            airportsList.addAll(this.militaryAirports.getElements());
         } else{
-            airportsList = this.civilianAirports.getElements();
+            airportsList.addAll(this.civilianAirports.getElements());
         }
 
         for (Airport airport: airportsList) {

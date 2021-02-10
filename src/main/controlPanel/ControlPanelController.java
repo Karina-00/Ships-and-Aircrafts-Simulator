@@ -92,13 +92,13 @@ public class ControlPanelController {
             Airport startingAirport = map.getMilitaryAirports().getRandomElement();
             Point airportPosition = startingAirport.getCenter();
             startingPosition = new Point(airportPosition.getX(), airportPosition.getY());
-            airRoute = new AirRoute(startingAirport); // Do poprawienia!!!! NIC NIE GENERUJE!
+            airRoute = new AirRoute(startingAirport);
         } else{
             AircraftCarrier aircraftCarrier = map.getAircraftCarriers().getRandomElement();
             Point shipPosition = aircraftCarrier.getCurrentPosition();
             startingPosition = new Point(shipPosition.getX(), shipPosition.getY());
             armament = aircraftCarrier.getArmament();
-            airRoute = new AirRoute(map.getClosestAirport(startingPosition, true)); // Do poprawienia! j.w.
+            airRoute = new AirRoute(map.getClosestAirport(startingPosition, true));
         }
 
         MilitaryAircraft plane = new MilitaryAircraft(startingPosition, id, armament, personnelCount, airRoute);

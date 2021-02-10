@@ -2,7 +2,10 @@ package main;
 
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
+import main.map.Map;
 import main.vehicles.Plane;
+
+import java.util.HashMap;
 
 
 public class Airport extends MapEntity{
@@ -12,6 +15,7 @@ public class Airport extends MapEntity{
 
     private final Storage<Plane> currentPlanes = new Storage<Plane>();
     private final Storage<Airport> connectedAirports = new Storage<Airport>();
+    private final HashMap<Integer, AirportConnection> airportConnections = new HashMap<Integer, AirportConnection>();
 
     private final boolean isMilitary;
     private final int minAirportCapacity = 7;
@@ -39,8 +43,19 @@ public class Airport extends MapEntity{
         return capacity;
     }
 
+    public void addConnectedAirport(Airport a){
+        connectedAirports.getElements().add(a);
+        AirportConnection newConnection = new AirportConnection(this, a);
+        airportConnections.put(a.getId(), newConnection);
+        Map.getInstance().getAirportConnections().addElement(newConnection);
+    }
+
     public Storage<Airport> getConnectedAirports() {
         return connectedAirports;
+    }
+
+    public AirportConnection getAirportConnection(int id) {
+        return airportConnections.get(id);
     }
 
     public Storage<Plane> getCurrentPlanes() {
