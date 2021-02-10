@@ -2,6 +2,9 @@ package main.baseClasses;
 
 import javafx.scene.image.ImageView;
 
+/**
+ * MapEntity represents an entity, which can contain an image object representing it.
+ */
 public class MapEntity {
     private final Point position;
     private ImageView mapObject;
@@ -16,7 +19,9 @@ public class MapEntity {
         this.position = new Point(x, y, radius);
     }
 
-
+    /**
+     * @return Returns coordinates of the center of the image/point.
+     */
     public Point getCenter(){
         double x = this.position.getX();
         double y = this.position.getY();

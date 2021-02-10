@@ -6,7 +6,9 @@ import main.routes.ShipStop;
 
 import java.io.IOException;
 
-
+/**
+ *  Represents a Cruise Ship.
+ */
 public class CruiseShip extends Ship {
     private int passengersCount;
     private int maxCapacity;
@@ -40,5 +42,4 @@ public class CruiseShip extends Ship {
     public void setBrand(String brand) {
         this.brand = brand;
     }
-
 }

@@ -13,19 +13,23 @@ import main.vehicles.ships.CruiseShip;
 
 import java.util.ArrayList;
 
+/**
+ *  The map is implemented as a singleton class and holds all information about the objects involved in the simulation,
+ *  like airports, vehicles, connections between airports, etc.
+ */
 public final class Map{
 
     private static final Map instance = new Map();
 
-    private Storage<Airport> militaryAirports = new Storage<Airport>();
-    private Storage<Airport> civilianAirports = new Storage<Airport>();
+    private final Storage<Airport> militaryAirports = new Storage<Airport>();
+    private final Storage<Airport> civilianAirports = new Storage<Airport>();
 
-    private Storage<ShipStop> shipStops = new Storage<ShipStop>();
+    private final Storage<ShipStop> shipStops = new Storage<ShipStop>();
 
-    private Storage<AirportConnection> airportConnections = new Storage<AirportConnection>();
+    private final Storage<AirportConnection> airportConnections = new Storage<AirportConnection>();
 
     private Storage<PassengerPlane> passengerPlanes = new Storage<PassengerPlane>();
-    private Storage<MilitaryAircraft> militaryAircrafts = new Storage<MilitaryAircraft>();
+    private Storage<MilitaryAircraft> militaryAircraft = new Storage<MilitaryAircraft>();
 
     private Storage<AircraftCarrier> aircraftCarriers = new Storage<AircraftCarrier>();
     private Storage<CruiseShip> cruiseShips = new Storage<CruiseShip>();
@@ -35,9 +39,7 @@ public final class Map{
 
     private static MapController mapController;
 
-    private Map() {
-        System.out.println("Map created");
-    }
+    private Map() {}
 
     public static Map getInstance() {
         return instance;
@@ -52,7 +54,6 @@ public final class Map{
         return shipsIdGenerator++;
     }
 
-
     public Storage<Airport> getMilitaryAirports() {
         return militaryAirports;
     }
@@ -65,7 +66,6 @@ public final class Map{
         return airportConnections;
     }
 
-
     public Storage<ShipStop> getShipStops() {
         return shipStops;
     }
@@ -74,8 +74,8 @@ public final class Map{
         return passengerPlanes;
     }
 
-    public Storage<MilitaryAircraft> getMilitaryAircrafts() {
-        return militaryAircrafts;
+    public Storage<MilitaryAircraft> getMilitaryAircraft() {
+        return militaryAircraft;
     }
 
     public Storage<AircraftCarrier> getAircraftCarriers() {
@@ -94,6 +94,9 @@ public final class Map{
         mapController = mC;
     }
 
+    /**
+     *  @return Returns the closest airport to the given coordinates.
+     */
     public Airport getClosestAirport(Point p, Boolean military){
         double minDistance = Double.MAX_VALUE;
         Airport closestAirport = null;
@@ -118,12 +121,15 @@ public final class Map{
         return closestAirport;
     }
 
+    /**
+     *  Resets the whole simulation.
+     */
     public void reset(){
         resetStorage();
         this.cruiseShips = new Storage<>();
         this.passengerPlanes = new Storage<>();
         this.aircraftCarriers = new Storage<>();
-        this.militaryAircrafts = new Storage<>();
+        this.militaryAircraft = new Storage<>();
     }
 
     private void resetStorage(){
@@ -136,7 +142,7 @@ public final class Map{
         for (Vehicle vehicle: passengerPlanes.getElements()) {
             vehicle.stopRunning();
         }
-        for (Vehicle vehicle: militaryAircrafts.getElements()) {
+        for (Vehicle vehicle: militaryAircraft.getElements()) {
             vehicle.stopRunning();
         }
     }

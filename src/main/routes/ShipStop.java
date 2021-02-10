@@ -4,6 +4,9 @@ package main.routes;
 import main.baseClasses.MapEntity;
 import main.baseClasses.Storage;
 
+/**
+ *  Represents a ship stop.
+ */
 public class ShipStop extends MapEntity {
     private final int id;
     private final Storage<ShipStop> neighbours = new Storage<>();
@@ -22,6 +25,9 @@ public class ShipStop extends MapEntity {
         return neighbours;
     }
 
+    /**
+     *  @return Returns a random adjacent ship stop different from the previous one.
+     */
     public ShipStop getRandomElementExcept(int id){
         ShipStop random;
         do {

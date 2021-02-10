@@ -6,6 +6,9 @@ import main.baseClasses.Point;
 
 import java.io.IOException;
 
+/**
+ *  Represents a passenger plane.
+ */
 public class PassengerPlane extends Plane {
     private int maxCapacity;
     private int passengersCount;

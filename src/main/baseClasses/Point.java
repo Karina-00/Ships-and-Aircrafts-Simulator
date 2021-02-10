@@ -3,6 +3,9 @@ package main.baseClasses;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleDoubleProperty;
 
+/**
+ * Represents a Point on a 2D map.
+ */
 public class Point {
     private double x;
     private double y;
@@ -33,7 +36,6 @@ public class Point {
         return String.format("(%f, %f)", this.x, this.y);
     }
 
-
     public double getY() {
         return y;
     }
@@ -50,10 +52,16 @@ public class Point {
         });
     }
 
+    /**
+     * @return Returns X coordinate value binding to a displaying text in the vehicle information panel.
+     */
     public SimpleDoubleProperty getXObservable() {
         return xObservable;
     }
 
+    /**
+     * @return Returns Y coordinate value binding to a displaying text in the vehicle information panel.
+     */
     public SimpleDoubleProperty getYObservable() {
         return yObservable;
     }

@@ -7,6 +7,9 @@ import main.routes.ShipStop;
 
 import java.io.IOException;
 
+/**
+ *  Represents Aircraft Carrier.
+ */
 public class AircraftCarrier extends Ship {
     private final String armament;
 
@@ -17,10 +20,16 @@ public class AircraftCarrier extends Ship {
         this.setObjectColor(Color.GREEN);
     }
 
+    /**
+     *  @return Returns the ship's armament.
+     */
     public String getArmament() {
         return armament;
     }
 
+    /**
+     *  @return Returns labels needed for the vehicle information panel.
+     */
     @Override
     protected Label[] getLabels(Label x, Label y, Label destination){
         return new Label[]{

@@ -6,6 +6,9 @@ import main.map.Map;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+/**
+ * Air Route represents a set of Airports (vertices)
+ */
 public class AirRoute {
     private double length;
     private final ArrayList<Airport> airportOrderList = new ArrayList<>();
@@ -16,6 +19,9 @@ public class AirRoute {
         calculateLength();
     }
 
+    /**
+     * Generates the route ( using dijkstra algorithm).
+     */
     private void generateAirRoute(Airport source){
         Map map = Map.getInstance();
         Airport target;
@@ -32,6 +38,9 @@ public class AirRoute {
         this.airportOrderList.addAll(path);
     }
 
+    /**
+     * Selects the destination airport.
+     */
     private Airport getTargetAirport(Storage<Airport> list, Airport source){
         if(list.getElements().size() < 2){
             return null;
@@ -43,6 +52,9 @@ public class AirRoute {
         return target;
     }
 
+    /**
+     * Calculates the length of the entire route.
+     */
     private void calculateLength(){
         double len = 0;
         for(int i = 0; i < airportOrderList.size()-1; i++){

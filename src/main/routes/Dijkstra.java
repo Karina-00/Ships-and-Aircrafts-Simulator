@@ -3,6 +3,10 @@ package main.routes;
 
 import java.util.*;
 
+
+/**
+ *  Represents a path finding algorithm.
+ */
 public class Dijkstra {
     private final List<AirportConnection> edges;
     private Set<Airport> settledNodes;
@@ -14,6 +18,9 @@ public class Dijkstra {
         this.edges = new ArrayList<>(edges);
     }
 
+    /**
+     * Executes the algorithm.
+     */
     public void execute(Airport source) {
         settledNodes = new HashSet<>();
         unSettledNodes = new HashSet<>();
@@ -86,9 +93,9 @@ public class Dijkstra {
         return Objects.requireNonNullElse(d, Integer.MAX_VALUE);
     }
 
-    /*
-     * This method returns the path from the source to the selected target and
-     * NULL if no path exists
+
+    /**
+     *  @return Returns the path from the source to the selected target and NULL if no path exists.
      */
     public LinkedList<Airport> getPath(Airport target) {
         LinkedList<Airport> path = new LinkedList<>();

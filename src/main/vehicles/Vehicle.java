@@ -1,5 +1,6 @@
 package main.vehicles;
 
+import javafx.application.Platform;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +23,9 @@ import java.io.IOException;
 
 import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
 
-
+/**
+ *  Represents an abstract class of vehicle.
+ */
 public abstract class Vehicle implements Runnable{
     private final Point currentPosition;
     private final int id;
@@ -57,15 +60,26 @@ public abstract class Vehicle implements Runnable{
         Map.getMapController().deleteObject(circle);
     }
 
+    /**
+     *  Stops the vehicle, and as a result deletes from the map.
+     */
     public void stopRunning() {
         this.running = false;
     }
 
+    /**
+     *  Abstract method, performs a move of the vehicle.
+     */
     public abstract void move();
 
+    /**
+     *  Draws the vehicle's symbol.
+     */
     public void draw() {
-        circle.setCenterX(currentPosition.getX());
-        circle.setCenterY(currentPosition.getY());
+        Platform.runLater(()->{
+            circle.setCenterX(currentPosition.getX());
+            circle.setCenterY(currentPosition.getY());
+        });
     }
 
     public Point getCurrentPosition() {
@@ -78,6 +92,9 @@ public abstract class Vehicle implements Runnable{
         this.currentPosition.setY(xy.getValue());
     }
 
+    /**
+     *  @return Checks for overshoots and returns valid values.
+     */
     private Pair<Double, Double> checkOvershoot(double newX, double newY){
         double x = currentPosition.getX();
         double y = currentPosition.getY();
@@ -133,6 +150,9 @@ public abstract class Vehicle implements Runnable{
 
     protected abstract SimpleObjectProperty<?> getDestinationObservable();
 
+    /**
+     *  @return Returns the content for vehicle's information panel.
+     */
     protected VBox vehicleViewPanelContent() {
         VBox vbox = new VBox();
         Label x = new Label();
@@ -156,6 +176,9 @@ public abstract class Vehicle implements Runnable{
         return vbox;
     }
 
+    /**
+     *  @return Creates "delete vehicle" button.
+     */
     private Button deleteVehicleButton(){
         Button button = new Button("Delete Vehicle");
         button.addEventFilter(MOUSE_CLICKED, new EventHandler<MouseEvent>() {
@@ -167,6 +190,9 @@ public abstract class Vehicle implements Runnable{
         return button;
     }
 
+    /**
+     *  Opens Vehicle's information panel.
+     */
     private void openVehiclesView() throws IOException {
         EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
             @Override

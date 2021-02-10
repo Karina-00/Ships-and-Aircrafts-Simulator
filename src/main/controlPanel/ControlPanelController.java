@@ -19,7 +19,9 @@ import main.vehicles.ships.CruiseShip;
 
 import java.io.IOException;
 
-
+/**
+ *  Controller for the Control Panel.
+ */
 public class ControlPanelController {
     @FXML
     private Slider passengerPlanePassengersCount;
@@ -53,6 +55,9 @@ public class ControlPanelController {
         formValidation();
     }
 
+    /**
+     *  Validates the form, blocks "Create Vehicle" buttons until all the needed parameters are filled.
+     */
     private void formValidation() {
         BooleanBinding validateAircraftCarrierCreator = Bindings.createBooleanBinding(() ->
                 !aircraftCarrierArmament.getText().isEmpty(), aircraftCarrierArmament.textProperty());
@@ -64,7 +69,9 @@ public class ControlPanelController {
         this.createCruiseShipBtn.disableProperty().bind(validateCruiseShipCreator.not());
     }
 
-
+    /**
+     *  Creates Passenger Plane.
+     */
     public void createPassengerPlane() throws IOException {
         int id = map.getPlanesIdGenerator();
         Airport startingAirport =  map.getCivilianAirports().getRandomElement();
@@ -82,6 +89,9 @@ public class ControlPanelController {
         addObjectToMap(plane);
     }
 
+    /**
+     *  Creates Military Aircraft.
+     */
     public void createMilitaryAircraft() throws IOException {
         int id = map.getPlanesIdGenerator();
         int personnelCount = (int) militaryPlanePersonnelCount.getValue();
@@ -105,11 +115,14 @@ public class ControlPanelController {
         }
 
         MilitaryAircraft plane = new MilitaryAircraft(startingPosition, id, armament, personnelCount, airRoute);
-        map.getMilitaryAircrafts().addElement(plane);
+        map.getMilitaryAircraft().addElement(plane);
 
         addObjectToMap(plane);
     }
 
+    /**
+     *  Creates Cruise Ship.
+     */
     public void createCruiseShip() throws IOException {
         int id = map.getShipsIdGenerator();
         double speed = cruiseShipVelocity.getValue();
@@ -128,6 +141,9 @@ public class ControlPanelController {
         addObjectToMap(ship);
     }
 
+    /**
+     *  Creates Aircraft Carrier.
+     */
     public void createAircraftCarrier() throws IOException {
         int id = map.getShipsIdGenerator();
         double speed = aircraftCarrierVelocity.getValue();
@@ -145,6 +161,9 @@ public class ControlPanelController {
     }
 
 
+    /**
+     *  Adds the newly-created object to the map and the object starts running.
+     */
     private void addObjectToMap(Vehicle vehicle){
         Map.getMapController().getVehiclesHolder().getChildren().add(vehicle.getCircle());
         try{

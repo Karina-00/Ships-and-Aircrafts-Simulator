@@ -29,7 +29,7 @@ kolejny "przystanek" w taki sposób, aby się nie cofać.
 Samolot wojskowy startuje z losowo wybranego lotniskowca, a jeśli nie ma żadnego na mapie 
 to wybiera dowolne lotnisko wojskowe. Samolot pasażerski analogicznie wybiera lotnisko cywilne.
 
-Lotnisko docelowe jest także wybierane losowo. Trasa Samolotu jest ustalana za pomocą algorytmu Dijkstry, który 
+Lotnisko docelowe jest także wybierane losowo. Trasa samolotu jest ustalana za pomocą algorytmu Dijkstry, który 
 wybiera najkrótszą trasę łączącą oba lotniska przebiegającą po narzuconych trasach lotniczych.
 Samolot jeżdzi po wytyczonej trasie tam i spowrotem.
 
@@ -45,5 +45,4 @@ W oknie mapy jest także dostępny przycisk do zrestartowania całej symulacji.
 
 ## Uwagi
 Niestety, mimo oddawania projektu w późniejszym terminie, nie udało mi się zaimplementować 
-funkcji oczekiwania pojazdów (np. na skrzyżowaniach, czy nad lotniskiem). Poza tym, przy dużej ilości pojazdów wątków
-program po pewnym czasie może zacząć "wyrzucać błędy" i przerwać działanie.
+funkcji oczekiwania pojazdów (np. na skrzyżowaniach, czy nad lotniskiem) na czas.

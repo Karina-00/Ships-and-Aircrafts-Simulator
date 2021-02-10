@@ -9,15 +9,17 @@ import main.vehicles.planes.Plane;
 
 import java.util.HashMap;
 
-
+/**
+ * Represents an airport on the map.
+ */
 public class Airport extends MapEntity {
 
     private final int id;
     private final int capacity;
 
-    private final Storage<Plane> currentPlanes = new Storage<Plane>();
-    private final Storage<Airport> connectedAirports = new Storage<Airport>();
-    private final HashMap<Integer, AirportConnection> airportConnections = new HashMap<Integer, AirportConnection>();
+    private final Storage<Plane> currentPlanes = new Storage<>();
+    private final Storage<Airport> connectedAirports = new Storage<>();
+    private final HashMap<Integer, AirportConnection> airportConnections = new HashMap<>();
 
     private final boolean isMilitary;
     private final int minAirportCapacity = 7;
@@ -41,6 +43,9 @@ public class Airport extends MapEntity {
         return id;
     }
 
+    /**
+     *  Creates a connection with another airport.
+     */
     public void addConnectedAirport(Airport a){
         connectedAirports.getElements().add(a);
         AirportConnection newConnection = new AirportConnection(this, a);
@@ -48,6 +53,9 @@ public class Airport extends MapEntity {
         Map.getInstance().getAirportConnections().addElement(newConnection);
     }
 
+    /**
+     *  @return Returns the airport connection with a specific connected airport.
+     */
     public AirportConnection getAirportConnection(int id) {
         return airportConnections.get(id);
     }

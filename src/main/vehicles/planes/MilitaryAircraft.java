@@ -8,6 +8,9 @@ import main.baseClasses.Point;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ *  Represents a Military Aircraft.
+ */
 public class MilitaryAircraft extends Plane {
     private final String armament;
 
@@ -17,6 +20,9 @@ public class MilitaryAircraft extends Plane {
         this.setObjectColor(Color.BROWN);
     }
 
+    /**
+     *  @return Returns a label representing its armament.
+     */
     protected Label armamentLabel(){
         return new Label("Military Aircraft\nArmament: " + armament);
     }

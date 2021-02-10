@@ -3,6 +3,9 @@ package main.routes;
 import javafx.scene.shape.Rectangle;
 import main.baseClasses.Point;
 
+/**
+ * Represents the intersection of two routes.
+ */
 public class Crossing {
     private final int id;
     private final Point position;

@@ -11,9 +11,14 @@ import javafx.stage.WindowEvent;
 import main.map.Map;
 import main.map.MapController;
 
-
+/**
+ *  Main class.
+ */
 public class Main extends Application{
 
+    /**
+     *  Opens the map window.
+     */
     public static void openMapStage(String[] args){
         launch(args);
     }

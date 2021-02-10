@@ -16,6 +16,9 @@ import java.io.IOException;
 
 import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
 
+/**
+ *  Represents a plane.
+ */
 public class Plane extends Vehicle {
     private int personnelCount;
     private double fuelLevel = 100.0;
@@ -37,6 +40,9 @@ public class Plane extends Vehicle {
         this.setTarget(destination.getCenter());
     }
 
+    /**
+     *  Sets new plane destination according to the route (called when the plane reach temporary destination).
+     */
     private void chooseNewDestination() {
         if(isCrashLanding){
             this.stopRunning();
@@ -83,12 +89,18 @@ public class Plane extends Vehicle {
         updateFuel();
     }
 
+    /**
+     *  Updates the value binding to the destination.
+     */
     private void setDestinationObservable(Airport destination){
         Platform.runLater(()->{
             this.destinationObservable.set(destination);
         });
     }
 
+    /**
+     *  Updates the value binding to the fuel level.
+     */
     private void setFuelObservable(double value){
         Platform.runLater(()->{
             String formatted = String.format("%1.2f", value);
@@ -96,20 +108,32 @@ public class Plane extends Vehicle {
         });
     }
 
+    /**
+     *  Fuels the plane.
+     */
     private void fuelPlane(){
         fuelLevel = 100.0;
         setFuelObservable(fuelLevel);
     }
 
+    /**
+     *  Updates the fuel level.
+     */
     private void updateFuel() {
         fuelLevel = Math.max(fuelLevel - this.getSpeed()/this.route.getLength()*100, 0);
         setFuelObservable(fuelLevel);
     }
 
+    /**
+     *  @return Returns value binding to the destination.
+     */
     protected SimpleObjectProperty<Airport> getDestinationObservable(){
         return destinationObservable;
     }
 
+    /**
+     *  Performs crash landing.
+     */
     public void crashLanding(){
         this.destination = Map.getInstance().getClosestAirport(this.getCurrentPosition(), null);
         setDestinationObservable(destination);
@@ -120,6 +144,9 @@ public class Plane extends Vehicle {
         return new Label("Passenger Plane");
     }
 
+    /**
+     *  @return Returns labels needed for the vehicle information panel.
+     */
     protected Label[] getLabels(Label x, Label y, Label destination){
         Label fuelLabel = new Label();
         Label crashLanding = new Label("CRASH LANDING");

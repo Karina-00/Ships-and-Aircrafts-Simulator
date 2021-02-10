@@ -26,6 +26,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
 
+/**
+ *  Controller for the map.
+ */
 public class MapController {
 
     @FXML
@@ -34,6 +37,7 @@ public class MapController {
     private AnchorPane mapObjectsHolder;
     private boolean controlPanelOpened = false;
     private final Map map = Map.getInstance();
+
     @FXML
     void initialize() {
         collectAirports();
@@ -41,11 +45,16 @@ public class MapController {
         collectShipPoints();
     }
 
+    /**
+     *  @return Returns the panel, to which all the vehicles are being added.
+     */
     public AnchorPane getVehiclesHolder() {
         return vehiclesHolder;
     }
 
-
+    /**
+     *  Collects all the airports from the map, creates their instances, and adds them to the simulation (map).
+     */
     private void collectAirports() {
         ArrayList<Airport> airportsList = new ArrayList<Airport>();
         Set<Node> airportObjects = mapObjectsHolder.lookupAll(".airport");
@@ -56,7 +65,7 @@ public class MapController {
             airportsList.add(new Airport(airportId++, node.getLayoutX(), node.getLayoutY(), (ImageView) node));
             node.setOnMouseClicked(event -> System.out.println(finalAirportId));
         }
-        connectAirports(airportsList);
+        connectAllAirports(airportsList);
 
         for (Airport airport : airportsList) {
             if (airport.isMilitary()) {
@@ -67,7 +76,10 @@ public class MapController {
         }
     }
 
-    private void connectAirports(ArrayList<Airport> airportsList) {
+    /**
+     *  Connects all airports.
+     */
+    private void connectAllAirports(ArrayList<Airport> airportsList) {
         Airport airport0 = airportsList.get(0);
         Airport airport1 = airportsList.get(1);
         Airport airport2 = airportsList.get(2);
@@ -106,6 +118,9 @@ public class MapController {
         drawLine(a1, a2);
     }
 
+    /**
+     *  Draws a line between two map entities.
+     */
     private void drawLine(MapEntity a1, MapEntity a2) {
         Point center1 = a1.getCenter();
         Point center2 = a2.getCenter();
@@ -116,6 +131,9 @@ public class MapController {
         mapObjectsHolder.getChildren().add(line);
     }
 
+    /**
+     *  Collects crossings from the map.
+     */
     private void collectCrossings() {
         ArrayList<Crossing> crossingList = new ArrayList<Crossing>();
         Set<Node> crossingObjects = mapObjectsHolder.lookupAll(".crossing");
@@ -130,7 +148,9 @@ public class MapController {
         }
     }
 
-
+    /**
+     *  Collects ship stops from the map.
+     */
     public void collectShipPoints() {
         Map map = Map.getInstance();
         ArrayList<ShipStop> shipStops = new ArrayList<ShipStop>();
@@ -146,7 +166,9 @@ public class MapController {
         map.getShipStops().setElements(shipStops);
     }
 
-
+    /**
+     *  Connects ship stops.
+     */
     private void connectShipPoints(ArrayList<ShipStop> shipStops) {
         shipStops.get(0).getNeighbours().setElements(getNeighboursByIndices(shipStops, 2, 5, 6));
         shipStops.get(1).getNeighbours().setElements(getNeighboursByIndices(shipStops, 3, 4));
@@ -175,7 +197,9 @@ public class MapController {
         }
     }
 
-
+    /**
+     *  Opens control panel.
+     */
     public void openControlPanel(ActionEvent event) throws IOException {
         if (!controlPanelOpened) {
             controlPanelOpened = true;
@@ -195,11 +219,17 @@ public class MapController {
         }
     }
 
+    /**
+     *  Calls the map's function to reset the simulation.
+     */
     public void resetSimulation() {
         map.reset();
         this.vehiclesHolder.getChildren().clear();
     }
 
+    /**
+     *  Deletes specific object (vehicle) from the map.
+     */
     public void deleteObject(Circle c){
         Platform.runLater(() -> {
             this.vehiclesHolder.getChildren().remove(c);

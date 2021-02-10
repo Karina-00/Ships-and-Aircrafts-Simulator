@@ -9,7 +9,9 @@ import main.vehicles.Vehicle;
 
 import java.io.IOException;
 
-
+/**
+ *  Represents a ship.
+ */
 public class Ship extends Vehicle {
     private ShipStop destination;
     private SimpleObjectProperty<ShipStop> destinationObservable;
@@ -24,6 +26,9 @@ public class Ship extends Vehicle {
         this.previousShipStop = startingShipStop;
     }
 
+    /**
+     *  @return Returns value binding to the ship's destination.
+     */
     protected SimpleObjectProperty<ShipStop> getDestinationObservable(){
         return destinationObservable;
     }
@@ -32,6 +37,9 @@ public class Ship extends Vehicle {
         this.previousShipStop = previousShipStop;
     }
 
+    /**
+     *  Sets new ship destination (called when the plane reach temporary destination).
+     */
     private void chooseNewDestination() {
         ShipStop previousDestination = this.destination;
         this.destination = previousDestination.getRandomElementExcept(previousShipStop.getId());
@@ -60,6 +68,9 @@ public class Ship extends Vehicle {
         }
     }
 
+    /**
+     *  @return Returns labels needed for the vehicle information panel.
+     */
     protected Label[] getLabels(Label x, Label y, Label destination){
         return new Label[]{
                 new Label("Ship ID: " + this.getId()),
