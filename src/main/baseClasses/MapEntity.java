@@ -1,4 +1,4 @@
-package main;
+package main.baseClasses;
 
 import javafx.scene.image.ImageView;
 
@@ -16,9 +16,6 @@ public class MapEntity {
         this.position = new Point(x, y, radius);
     }
 
-    public MapEntity(Point point){
-        this.position = point;
-    }
 
     public Point getCenter(){
         double x = this.position.getX();
@@ -37,18 +34,6 @@ public class MapEntity {
 
     public Point getPosition() {
         return position;
-    }
-
-    public ImageView getMapObject(){
-        return mapObject;
-    }
-
-    public void setMapObject(ImageView mapObject) {
-        this.mapObject = mapObject;
-    }
-
-    public double getRadius(){
-        return radius;
     }
 
     public void setRadius(double newRadius){

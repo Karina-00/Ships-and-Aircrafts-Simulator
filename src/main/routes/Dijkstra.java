@@ -1,11 +1,9 @@
-package main;
+package main.routes;
 
 
 import java.util.*;
 
 public class Dijkstra {
-
-//    private final List<Airport> nodes;
     private final List<AirportConnection> edges;
     private Set<Airport> settledNodes;
     private Set<Airport> unSettledNodes;
@@ -13,16 +11,14 @@ public class Dijkstra {
     private Map<Airport, Integer> distance;
 
     public Dijkstra(ArrayList<AirportConnection> edges) {
-        // create a copy of the array so that we can operate on this array
-//        this.nodes = new ArrayList<Airport>(map.getCivilianAirports().getElements() + map.getMilitaryAirports().getElements());
-        this.edges = new ArrayList<AirportConnection>(edges);
+        this.edges = new ArrayList<>(edges);
     }
 
     public void execute(Airport source) {
-        settledNodes = new HashSet<Airport>();
-        unSettledNodes = new HashSet<Airport>();
-        distance = new HashMap<Airport, Integer>();
-        predecessors = new HashMap<Airport, Airport>();
+        settledNodes = new HashSet<>();
+        unSettledNodes = new HashSet<>();
+        distance = new HashMap<>();
+        predecessors = new HashMap<>();
         distance.put(source, 0);
         unSettledNodes.add(source);
         while (unSettledNodes.size() > 0) {
@@ -44,7 +40,6 @@ public class Dijkstra {
                 unSettledNodes.add(target);
             }
         }
-
     }
 
     private int getDistance(Airport node, Airport target) {
@@ -58,7 +53,7 @@ public class Dijkstra {
     }
 
     private List<Airport> getNeighbors(Airport node) {
-        List<Airport> neighbors = new ArrayList<Airport>();
+        List<Airport> neighbors = new ArrayList<>();
         for (AirportConnection edge : edges) {
             if (edge.getSource().equals(node)
                     && !isSettled(edge.getDestination())) {
@@ -96,9 +91,8 @@ public class Dijkstra {
      * NULL if no path exists
      */
     public LinkedList<Airport> getPath(Airport target) {
-        LinkedList<Airport> path = new LinkedList<Airport>();
+        LinkedList<Airport> path = new LinkedList<>();
         Airport step = target;
-        // check if a path exists
         if (predecessors.get(step) == null) {
             return null;
         }
@@ -107,9 +101,7 @@ public class Dijkstra {
             step = predecessors.get(step);
             path.add(step);
         }
-        // Put it into the correct order
         Collections.reverse(path);
         return path;
     }
-
 }

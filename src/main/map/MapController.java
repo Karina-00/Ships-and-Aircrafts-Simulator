@@ -15,7 +15,11 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import main.*;
+import main.baseClasses.MapEntity;
+import main.baseClasses.Point;
+import main.routes.Airport;
+import main.routes.Crossing;
+import main.routes.ShipStop;
 
 import java.io.IOException;
 import java.util.ArrayList;

@@ -1,8 +1,8 @@
-package main.vehicles;
+package main.vehicles.ships;
 
 import javafx.scene.paint.Color;
-import main.Point;
-import main.ShipStop;
+import main.baseClasses.Point;
+import main.routes.ShipStop;
 
 import java.io.IOException;
 

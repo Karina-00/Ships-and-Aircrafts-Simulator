@@ -1,6 +1,7 @@
-package main;
+package main.routes;
 
 import javafx.scene.shape.Rectangle;
+import main.baseClasses.Point;
 
 public class Crossing {
     private final int id;

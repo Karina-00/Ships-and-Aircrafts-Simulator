@@ -31,13 +31,6 @@
             <AnchorPane fx:id="mapObjectsHolder" prefHeight="200.0" prefWidth="200.0" stylesheets="@../styles/map.css">
                <children>
 
-<!--                  <AnchorPane fx:id="vehiclesHolder" prefHeight="568.0" prefWidth="1100.0" >-->
-<!--                     <children>-->
-
-<!--                     </children>-->
-<!--                  </AnchorPane>-->
-
-
                <ImageView fitHeight="32.0" fitWidth="36.0" layoutX="392.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true" styleClass="airport">
                   <image>
                      <Image url="@../assets/airport.png" />

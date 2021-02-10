@@ -6,12 +6,16 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
-import main.AirRoute;
-import main.Airport;
-import main.Point;
-import main.ShipStop;
+import main.routes.AirRoute;
+import main.routes.Airport;
+import main.baseClasses.Point;
+import main.routes.ShipStop;
 import main.map.Map;
 import main.vehicles.*;
+import main.vehicles.planes.MilitaryAircraft;
+import main.vehicles.planes.PassengerPlane;
+import main.vehicles.ships.AircraftCarrier;
+import main.vehicles.ships.CruiseShip;
 
 import java.io.IOException;
 

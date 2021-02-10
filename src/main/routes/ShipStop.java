@@ -1,7 +1,10 @@
-package main;
+package main.routes;
 
 
-public class ShipStop extends MapEntity{
+import main.baseClasses.MapEntity;
+import main.baseClasses.Storage;
+
+public class ShipStop extends MapEntity {
     private final int id;
     private final Storage<ShipStop> neighbours = new Storage<>();
 

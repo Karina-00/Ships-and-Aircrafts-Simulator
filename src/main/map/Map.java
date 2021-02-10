@@ -1,7 +1,15 @@
 package main.map;
 
-import main.*;
+import main.baseClasses.Point;
+import main.baseClasses.Storage;
+import main.routes.Airport;
+import main.routes.AirportConnection;
+import main.routes.ShipStop;
 import main.vehicles.*;
+import main.vehicles.planes.MilitaryAircraft;
+import main.vehicles.planes.PassengerPlane;
+import main.vehicles.ships.AircraftCarrier;
+import main.vehicles.ships.CruiseShip;
 
 import java.util.ArrayList;
 

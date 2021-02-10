@@ -1,4 +1,4 @@
-package main;
+package main.baseClasses;
 
 import javafx.application.Platform;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -6,23 +6,23 @@ import javafx.beans.property.SimpleDoubleProperty;
 public class Point {
     private double x;
     private double y;
-    SimpleDoubleProperty a;
-    SimpleDoubleProperty b;
+    SimpleDoubleProperty xObservable;
+    SimpleDoubleProperty yObservable;
     private double radius = 7.0;
 
     public Point(double x, double y, double radius) {
         this.x = x;
         this.y = y;
         this.radius = radius;
-        this.a = new SimpleDoubleProperty(x);
-        this.b = new SimpleDoubleProperty(y);
+        this.xObservable = new SimpleDoubleProperty(x);
+        this.yObservable = new SimpleDoubleProperty(y);
     }
 
     public Point(double x, double y) {
         this.x = x;
         this.y = y;
-        this.a = new SimpleDoubleProperty(x);
-        this.b = new SimpleDoubleProperty(y);
+        this.xObservable = new SimpleDoubleProperty(x);
+        this.yObservable = new SimpleDoubleProperty(y);
     }
 
     public double calculateDistance(Point p){
@@ -46,23 +46,23 @@ public class Point {
         this.y = y;
         Platform.runLater(()->{
             String str = String.format("%1.2f", y);
-            this.b.set(Double.parseDouble(str));
+            this.yObservable.set(Double.parseDouble(str));
         });
     }
 
-    public SimpleDoubleProperty aProperty() {
-        return a;
+    public SimpleDoubleProperty getXObservable() {
+        return xObservable;
     }
 
-    public SimpleDoubleProperty bProperty() {
-        return b;
+    public SimpleDoubleProperty getYObservable() {
+        return yObservable;
     }
 
     public void setX(double x) {
         this.x = x;
         Platform.runLater(()->{
             String str = String.format("%1.2f", x);
-            this.a.set(Double.parseDouble(str));
+            this.xObservable.set(Double.parseDouble(str));
         });
     }
 

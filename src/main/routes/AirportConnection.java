@@ -1,6 +1,6 @@
-package main;
+package main.routes;
 
-import main.vehicles.Plane;
+import main.vehicles.planes.Plane;
 
 import java.util.ArrayList;
 import java.util.Random;

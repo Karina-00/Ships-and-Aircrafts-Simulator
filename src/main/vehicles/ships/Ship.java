@@ -1,12 +1,11 @@
-package main.vehicles;
+package main.vehicles.ships;
 
 import javafx.application.Platform;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.control.Label;
-import javafx.scene.paint.Color;
-import main.Point;
-import main.ShipStop;
-import main.map.Map;
+import main.baseClasses.Point;
+import main.routes.ShipStop;
+import main.vehicles.Vehicle;
 
 import java.io.IOException;
 
@@ -23,36 +22,10 @@ public class Ship extends Vehicle {
         this.destinationObservable =  new SimpleObjectProperty<ShipStop>(destination);
         this.setTarget(destination.getCenter());
         this.previousShipStop = startingShipStop;
-//        getCircle().setStroke(Color.BLUE);
     }
-
-    protected Label[] getLabels(Label x, Label y, Label destination){
-        return new Label[]{
-                new Label("Ship ID: " + this.getId()),
-                new Label("Coordinate X:"),
-                x,
-                new Label("Coordinate Y:" ),
-                y,
-                new Label("Destination point:"),
-                destination,
-        };
-    }
-
 
     protected SimpleObjectProperty<ShipStop> getDestinationObservable(){
         return destinationObservable;
-    }
-
-    public ShipStop getDestination() {
-        return destination;
-    }
-
-    public void setDestination(ShipStop destination) {
-        this.destination = destination;
-    }
-
-    public ShipStop getPreviousShipStop() {
-        return previousShipStop;
     }
 
     public void setPreviousShipStop(ShipStop previousShipStop) {
@@ -85,5 +58,17 @@ public class Ship extends Vehicle {
         if (this.getCurrentPosition().calculateDistance(target) < 1) {
             chooseNewDestination();
         }
+    }
+
+    protected Label[] getLabels(Label x, Label y, Label destination){
+        return new Label[]{
+                new Label("Ship ID: " + this.getId()),
+                new Label("Coordinate X:"),
+                x,
+                new Label("Coordinate Y:" ),
+                y,
+                new Label("Destination point:"),
+                destination,
+        };
     }
 }

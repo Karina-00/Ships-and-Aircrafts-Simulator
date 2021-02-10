@@ -1,11 +1,10 @@
-package main;
+package main.baseClasses;
 
 import java.util.ArrayList;
 
 
 public class Storage<T> {
     private ArrayList<T> elements = new ArrayList<T>();
-    private int idGenerator = 0;
 
     public Storage(){}
 
@@ -25,9 +24,5 @@ public class Storage<T> {
         int n = elements.size() - 1;
         int randomIndex = (int)(Math.random() * (n + 1));
         return elements.get(randomIndex);
-    }
-
-    public int generateId(){
-        return idGenerator++;
     }
 }

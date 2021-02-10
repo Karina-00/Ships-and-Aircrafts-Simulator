@@ -1,11 +1,12 @@
-package main;
+package main.routes;
 
+import main.baseClasses.Storage;
 import main.map.Map;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-public class AirRoute extends Route {
+public class AirRoute {
     private double length;
     private final ArrayList<Airport> airportOrderList = new ArrayList<>();
 
@@ -28,12 +29,7 @@ public class AirRoute extends Route {
         dijkstra.execute(source);
         LinkedList<Airport> path = dijkstra.getPath(target);
 
-        for (Airport airport : path) {
-            System.out.println(airport);
-            this.airportOrderList.add(airport);
-        }
-
-        System.out.println(path.size() + "   " + airportOrderList.size());
+        this.airportOrderList.addAll(path);
     }
 
     private Airport getTargetAirport(Storage<Airport> list, Airport source){
@@ -64,6 +60,12 @@ public class AirRoute extends Route {
 
     public ArrayList<Airport> getAirportsList() {
         return airportOrderList;
+    }
+
+    @Override
+    public String toString() {
+        return "length=" + Math.round(length) +
+                "\n" + airportOrderList.toString();
     }
 }
 

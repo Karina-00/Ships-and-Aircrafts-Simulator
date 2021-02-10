@@ -1,9 +1,9 @@
-package main.vehicles;
+package main.vehicles.planes;
 
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
-import main.AirRoute;
-import main.Point;
+import main.routes.AirRoute;
+import main.baseClasses.Point;
 
 import java.io.IOException;
 import java.util.Objects;

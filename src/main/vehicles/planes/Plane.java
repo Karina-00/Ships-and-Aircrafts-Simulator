@@ -1,22 +1,16 @@
-package main.vehicles;
+package main.vehicles.planes;
 
 import javafx.application.Platform;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
-import main.AirRoute;
-import main.Airport;
-import main.Point;
-import main.ShipStop;
+import main.routes.AirRoute;
+import main.routes.Airport;
+import main.baseClasses.Point;
 import main.map.Map;
+import main.vehicles.Vehicle;
 
 import java.io.IOException;
 
@@ -116,30 +110,6 @@ public class Plane extends Vehicle {
         return destinationObservable;
     }
 
-    public int getPersonnelCount() {
-        return personnelCount;
-    }
-
-    public void setPersonnelCount(int personnelCount) {
-        this.personnelCount = personnelCount;
-    }
-
-    public double getFuelLevel() {
-        return fuelLevel;
-    }
-
-    public AirRoute getRoute() {
-        return route;
-    }
-
-    public void setRoute(AirRoute route) {
-        this.route = route;
-    }
-
-    public SimpleDoubleProperty getFuelObservable() {
-        return fuelObservable;
-    }
-
     public void crashLanding(){
         this.destination = Map.getInstance().getClosestAirport(this.getCurrentPosition(), null);
         setDestinationObservable(destination);
@@ -153,6 +123,7 @@ public class Plane extends Vehicle {
     protected Label[] getLabels(Label x, Label y, Label destination){
         Label fuelLabel = new Label();
         Label crashLanding = new Label("CRASH LANDING");
+        crashLanding.setStyle("-fx-border-color: black; -fx-padding: 5");
         crashLanding.addEventFilter(MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -160,27 +131,27 @@ public class Plane extends Vehicle {
             }
         });
 
-        if(this.getCurrentPosition().aProperty() != null){
+        if(this.fuelObservable != null){
             fuelLabel.textProperty().bind(fuelObservable.asString());
         }else {
             fuelLabel.textProperty().unbind();
         }
-        
-        Label[] labels = new Label[]{
+
+        return new Label[]{
                 new Label("Plane ID: " + this.getId()),
                 armamentLabel(),
                 new Label("Coordinate X:"),
                 x,
                 new Label("Coordinate Y:" ),
                 y,
-                new Label("Destination point:"),
+                new Label("Current destination point:"),
                 destination,
+                new Label("Route:\n" + route),
                 new Label("PersonnelCount:"),
                 new Label(String.valueOf(personnelCount)),
                 new Label("Fuel level:"),
                 fuelLabel,
                 crashLanding,
         };
-        return labels;
     }
 }

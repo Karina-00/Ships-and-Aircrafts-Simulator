@@ -15,7 +15,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.util.Pair;
-import main.Point;
+import main.baseClasses.Point;
 import main.map.Map;
 
 import java.io.IOException;
@@ -34,7 +34,6 @@ public abstract class Vehicle implements Runnable{
     public Vehicle(Point currentPosition, int id) throws IOException {
         this.currentPosition = currentPosition;
         this.id = id;
-//        circle.setFill(Color.BLUE);
         circle.setStroke(Color.BLACK);
         circle.setCenterX(currentPosition.getX());
         circle.setCenterY(currentPosition.getY());
@@ -68,7 +67,6 @@ public abstract class Vehicle implements Runnable{
         circle.setCenterX(currentPosition.getX());
         circle.setCenterY(currentPosition.getY());
     }
-
 
     public Point getCurrentPosition() {
         return currentPosition;
@@ -140,9 +138,9 @@ public abstract class Vehicle implements Runnable{
         Label x = new Label();
         Label y = new Label();
         Label destinationLabel = new Label();
-        if(this.getCurrentPosition().aProperty() != null){
-            x.textProperty().bind(this.getCurrentPosition().aProperty().asString());
-            y.textProperty().bind(this.getCurrentPosition().bProperty().asString());
+        if(this.getCurrentPosition().getXObservable() != null){
+            x.textProperty().bind(this.getCurrentPosition().getXObservable().asString());
+            y.textProperty().bind(this.getCurrentPosition().getYObservable().asString());
             destinationLabel.textProperty().bind(this.getDestinationObservable().asString());
         }else {
             x.textProperty().unbind();
