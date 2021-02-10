@@ -1,6 +1,6 @@
 package main.map;
 
-import javafx.animation.AnimationTimer;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -8,24 +8,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import main.*;
-import main.vehicles.Vehicle;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 public class MapController {
 
@@ -34,37 +29,12 @@ public class MapController {
     @FXML
     private AnchorPane mapObjectsHolder;
     private boolean controlPanelOpened = false;
-
-    private Movement clock;
     private final Map map = Map.getInstance();
-
-    private Simulation simulation;
-
-
-    private class Movement extends AnimationTimer {
-
-        private final long FRAMES_PER_SECOND = 50L;
-        private final long INTERVAL = 10000000L / FRAMES_PER_SECOND;
-
-        private long last = 0;
-
-        @Override
-        public void handle(long now) {
-            if (now - last < INTERVAL) {
-                simulationStep();
-                last = now;
-            }
-        }
-    }
-
-
     @FXML
     void initialize() {
-        clock = new Movement();
-        simulation = new Simulation(vehiclesHolder);
-        ArrayList<Airport> airportsList = collectAirports();
-        ArrayList<Crossing> crossingsList = collectCrossings();
-        ArrayList<ShipStop> shipPoints = collectShipPoints();
+        collectAirports();
+        collectCrossings();
+        collectShipPoints();
     }
 
     public AnchorPane getVehiclesHolder() {
@@ -72,7 +42,7 @@ public class MapController {
     }
 
 
-    private ArrayList<Airport> collectAirports() {
+    private void collectAirports() {
         ArrayList<Airport> airportsList = new ArrayList<Airport>();
         Set<Node> airportObjects = mapObjectsHolder.lookupAll(".airport");
         int airportId = 0;
@@ -81,11 +51,7 @@ public class MapController {
             int finalAirportId = airportId;
             airportsList.add(new Airport(airportId++, node.getLayoutX(), node.getLayoutY(), (ImageView) node));
             node.setOnMouseClicked(event -> System.out.println(finalAirportId));
-//            final Tooltip tooltip = new Tooltip();
-//            tooltip.setText("Airport ID: " + airportId);
-//            airportsList.get(airportId).getMapObject().setTooltip(tooltip);
         }
-
         connectAirports(airportsList);
 
         for (Airport airport : airportsList) {
@@ -94,11 +60,7 @@ public class MapController {
             } else {
                 Map.getInstance().getCivilianAirports().addElement(airport);
             }
-            System.out.println("Lotnisko nr: " + airport.getId() + " Pozycja na mapie: "
-                    + airport.getPosition().toString() + " Capacity: " + airport.getCapacity()
-                    + " Wojskowy: " + airport.isMilitary() + " Promień: " + airport.getRadius());
         }
-        return airportsList;
     }
 
     private void connectAirports(ArrayList<Airport> airportsList) {
@@ -150,7 +112,7 @@ public class MapController {
         mapObjectsHolder.getChildren().add(line);
     }
 
-    private ArrayList<Crossing> collectCrossings() {
+    private void collectCrossings() {
         ArrayList<Crossing> crossingList = new ArrayList<Crossing>();
         Set<Node> crossingObjects = mapObjectsHolder.lookupAll(".crossing");
         int crossingId = 0;
@@ -160,13 +122,12 @@ public class MapController {
         }
 
         for (Crossing crossing : crossingList) {
-            System.out.println("Skrzyzowanie nr: " + crossing.getId() + " Wspolrzedne: " + crossing.getPosition().toString());
+            System.out.println("Crossing nr: " + crossing.getId() + " Coordinates: " + crossing.getPosition().toString());
         }
-        return crossingList;
     }
 
 
-    public ArrayList<ShipStop> collectShipPoints() {
+    public void collectShipPoints() {
         Map map = Map.getInstance();
         ArrayList<ShipStop> shipStops = new ArrayList<ShipStop>();
         Set<Node> pointObjects = mapObjectsHolder.lookupAll(".ship-stop");
@@ -179,7 +140,6 @@ public class MapController {
         }
         connectShipPoints(shipStops);
         map.getShipStops().setElements(shipStops);
-        return shipStops;
     }
 
 
@@ -231,30 +191,14 @@ public class MapController {
         }
     }
 
-
-    public void startSimulation() throws InterruptedException {
-//        simulationStep();
-//
-//        Movement n = new Movement();
-////        n.handle();
-    }
-
-    public void pauseSimulation() {
-
-    }
-
-    public void simulationStep() {
-//        simulation.move();
-//        simulation.draw();
-    }
-
-
     public void resetSimulation() {
         map.reset();
-        simulation.resetSimulation();
+        this.vehiclesHolder.getChildren().clear();
     }
 
     public void deleteObject(Circle c){
-        simulation.deleteObject(c);
+        Platform.runLater(() -> {
+            this.vehiclesHolder.getChildren().remove(c);
+        });
     }
 }

@@ -27,7 +27,7 @@ public class Airport extends MapEntity{
         this.id = id;
         this.setRadius(airportRadius);
         this.capacity = minAirportCapacity + (int)(Math.random() * ((maxAirportCapacity - minAirportCapacity) + 1));
-        this.isMilitary = Math.random() < 0.3;
+        this.isMilitary = Math.random() < 0.4;
         if (isMilitary){
             ColorAdjust colorAdjust = new ColorAdjust();
             colorAdjust.setHue(0.6);

@@ -41,7 +41,6 @@ public class Plane extends Vehicle {
         this.destinationObservable = new SimpleObjectProperty<Airport>(destination);
         this.fuelObservable = new SimpleDoubleProperty(fuelLevel);
         this.setTarget(destination.getCenter());
-
     }
 
     private void chooseNewDestination() {

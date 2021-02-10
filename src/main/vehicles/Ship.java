@@ -23,7 +23,7 @@ public class Ship extends Vehicle {
         this.destinationObservable =  new SimpleObjectProperty<ShipStop>(destination);
         this.setTarget(destination.getCenter());
         this.previousShipStop = startingShipStop;
-        getCircle().setStroke(Color.BLUE);
+//        getCircle().setStroke(Color.BLUE);
     }
 
     protected Label[] getLabels(Label x, Label y, Label destination){
