@@ -7,7 +7,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="mainWindowContainer" maxHeight="635.0" prefHeight="597.0" prefWidth="1100.0" stylesheets="@../styles/map.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.map.MapController">
+<AnchorPane maxHeight="635.0" prefHeight="597.0" prefWidth="1100.0" stylesheets="@../styles/map.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.map.MapController">
    <children>
       <GridPane id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="594.0" minWidth="1000.0" prefHeight="596.0" prefWidth="1100.0" stylesheets="@../styles/map.css">
         <columnConstraints>
@@ -21,7 +21,7 @@
          <children>
             <VBox prefHeight="36.0" prefWidth="1038.0" GridPane.rowIndex="1">
                <children>
-                <Button fx:id="openControlPanelButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="32.0" maxWidth="1.7976931348623157E308" minWidth="592.0" mnemonicParsing="false" onAction="#openControlPanel" prefHeight="32.0" prefWidth="1100.0" text="Open Control Panel" textAlignment="CENTER" wrapText="true">
+                <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="32.0" maxWidth="1.7976931348623157E308" minWidth="592.0" mnemonicParsing="false" onAction="#openControlPanel" prefHeight="32.0" prefWidth="1100.0" text="Open Control Panel" textAlignment="CENTER" wrapText="true">
                      <font>
                         <Font size="11.0" />
                      </font>

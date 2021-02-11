@@ -6,7 +6,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -18,8 +17,6 @@ import javafx.stage.Stage;
 import javafx.util.Pair;
 import app.baseClasses.Point;
 import app.map.Map;
-
-import java.io.IOException;
 
 import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
 
@@ -193,12 +190,6 @@ public abstract class Vehicle implements Runnable{
             @Override
             public void handle(javafx.scene.input.MouseEvent mouseEvent) {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../vehicleViewPanel/vehicleView.fxml"));
-                Parent root = null;
-                try {
-                    root = (Parent) fxmlLoader.load();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
                 Stage stage = new Stage();
                 Group group = new Group();
                 Scene scene = new Scene(group);

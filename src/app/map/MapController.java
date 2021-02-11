@@ -200,7 +200,7 @@ public class MapController {
     public void openControlPanel() throws IOException {
         if (!controlPanelOpened) {
             controlPanelOpened = true;
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../controlPanel/controlPanel.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/app/controlPanel/controlPanel.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));

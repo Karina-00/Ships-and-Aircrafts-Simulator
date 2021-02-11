@@ -171,6 +171,5 @@ public class ControlPanelController {
         } catch(IndexOutOfBoundsException e) {
             e.printStackTrace();
         }
-
     }
 }

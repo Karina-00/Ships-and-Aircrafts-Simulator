@@ -43,8 +43,7 @@ Możemy też usunąć każdy pojazd z mapy lub wykonać lądowanie awaryjne na n
 W oknie mapy jest także dostępny przycisk do zrestartowania całej symulacji.
 
 ### Uruchomienie
-`--module-path ${PATH_TO_FX} --add-modules javafx.controls,javafx.fxml`
+`java --module-path ${PATH_TO_FX} --add-modules javafx.controls,javafx.fxml -jar Project.jar`
 
 ## Uwagi
-Niestety, mimo oddawania projektu w późniejszym terminie, nie udało mi się zaimplementować 
-funkcji oczekiwania pojazdów (np. na skrzyżowaniach, czy nad lotniskiem) na czas.
+Niestety nie udało mi się zaimplementować przepuszczania się pojazdów na skrzyżowaniach, czy oczekiwania nad lotniskiem.
