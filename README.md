@@ -42,6 +42,8 @@ paliwa oraz całą trasę pojazdu.
 Możemy też usunąć każdy pojazd z mapy lub wykonać lądowanie awaryjne na najbliższym lotnisku.
 W oknie mapy jest także dostępny przycisk do zrestartowania całej symulacji.
 
+### Uruchomienie
+`--module-path ${PATH_TO_FX} --add-modules javafx.controls,javafx.fxml`
 
 ## Uwagi
 Niestety, mimo oddawania projektu w późniejszym terminie, nie udało mi się zaimplementować 

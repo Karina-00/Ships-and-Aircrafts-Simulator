@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<ScrollPane prefHeight="600" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controlPanel.ControlPanelController">
+   <content>
+      <AnchorPane prefHeight="1212.0" prefWidth="318.0">
+         <children>
+            <Label layoutX="59.0" layoutY="30.0" prefHeight="34.0" prefWidth="204.0" text="Create Vehicle">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+            <VBox layoutX="19.0" layoutY="85.0" prefHeight="1114.0" prefWidth="278.0">
+               <children>
+
+                  <VBox prefHeight="290.0" prefWidth="278.0">
+                     <children>
+
+                        <Label prefHeight="30.0" prefWidth="160.0" text="Passenger Plane">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="15.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label stylesheets="@../styles/controlPanel.css" text="Passengers count" />
+                        <Slider fx:id="passengerPlanePassengersCount" max="200.0" minorTickCount="5" showTickLabels="true" showTickMarks="true" value="100.0" />
+                        <Label stylesheets="@../styles/controlPanel.css" text="Personnel's count" />
+                        <Slider fx:id="passengerPlanePersonnelCount" layoutX="10.0" layoutY="83.0" majorTickUnit="5.0" max="20.0" min="5.0" minorTickCount="5" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="12.0" />
+                        <Label prefHeight="18.0" prefWidth="203.0" stylesheets="@../styles/controlPanel.css" text="Maximum passengers capacity" />
+                        <Slider fx:id="passengerPlaneCapacity" layoutX="10.0" layoutY="275.0" majorTickUnit="20.0" max="200.0" min="100.0" minorTickCount="5" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="150.0" />
+                        <Button mnemonicParsing="false" onAction="#createPassengerPlane" prefHeight="17.0" prefWidth="277.0" text="Create Passenger Plane">
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+
+                  <VBox prefHeight="208.0" prefWidth="278.0">
+                     <children>
+                        <Label prefHeight="30.0" prefWidth="160.0" text="Military Plane">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="15.0" top="20.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label stylesheets="@../styles/controlPanel.css" text="Personnel's count" />
+                        <Slider fx:id="militaryPlanePersonnelCount" majorTickUnit="5.0" max="40.0" min="10.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="25.0" />
+                        <Button mnemonicParsing="false" onAction="#createMilitaryAircraft" prefHeight="18.0" prefWidth="278.0" text="Create Military Aircraft">
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+
+                  <VBox prefHeight="346.0" prefWidth="278.0">
+                     <children>
+                        <Label prefHeight="30.0" prefWidth="160.0" text="Cruise Ship">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="15.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label prefHeight="18.0" prefWidth="102.0" stylesheets="@../styles/controlPanel.css" text="Brand" />
+                        <TextField fx:id="cruiseShipBrand">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </TextField>
+                        <Label stylesheets="@../styles/controlPanel.css" text="Max velocity" />
+                        <Slider fx:id="cruiseShipVelocity" majorTickUnit="2.0" max="30.0" min="20.0" minorTickCount="5" prefHeight="14.0" prefWidth="278.0" showTickLabels="true" showTickMarks="true" value="25.0" />
+                        <Label stylesheets="@../styles/controlPanel.css" text="Personnel's count" />
+                        <Slider fx:id="cruiseShipPassengersCount" majorTickUnit="10.0" min="20.0" minorTickCount="5" showTickLabels="true" showTickMarks="true" value="50.0" />
+                        <Label prefHeight="18.0" prefWidth="203.0" stylesheets="@../styles/controlPanel.css" text="Maximum passengers capacity" />
+                        <Slider fx:id="cruiseShipCapacity" majorTickUnit="100.0" max="1000.0" min="100.0" minorTickCount="50" showTickLabels="true" showTickMarks="true" value="500.0" />
+                        <Button fx:id="createCruiseShipBtn" mnemonicParsing="false" onAction="#createCruiseShip" prefHeight="26.0" prefWidth="278.0" text="Create Cruise Ship">
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="250.0" prefWidth="278.0">
+                     <children>
+                        <Label prefHeight="30.0" prefWidth="160.0" text="Aircraft Carrier">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="15.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label stylesheets="@../styles/controlPanel.css" text="Max velocity" />
+                        <Slider fx:id="aircraftCarrierVelocity" majorTickUnit="2.0" max="30.0" min="20.0" minorTickCount="5" showTickLabels="true" showTickMarks="true" value="25.0" />
+                        <Label stylesheets="@../styles/controlPanel.css" text="Armament" />
+                        <TextField fx:id="aircraftCarrierArmament" prefHeight="26.0" prefWidth="171.0" />
+                        <Button fx:id="createAircraftCarrierBtn" mnemonicParsing="false" onAction="#createAircraftCarrier" prefHeight="27.0" prefWidth="285.0" text="Create Aircraft Carrier">
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </VBox>
+               </children>
+            </VBox>
+
+         </children>
+      </AnchorPane>
+   </content>
+</ScrollPane>
