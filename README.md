@@ -5,6 +5,10 @@ nr indeksu: 145343
 grupa I3.2  
 poniedziałek
 
+# Screenshots
+
+![](https://github.com/Karina-00/Ships-and-Aircrafts-Simulator/blob/master/src/app/styles/screenshot1.png)
+![](https://github.com/Karina-00/Ships-and-Aircrafts-Simulator/blob/master/src/app/styles/screenshot2.png)
 
 ## Opis działania programu
 
