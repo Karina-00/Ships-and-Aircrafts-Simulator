@@ -1,10 +1,5 @@
 # Ships and Aircraft Simulator
 
-Karina Szubert  
-nr indeksu: 145343  
-grupa I3.2  
-poniedziałek
-
 # Screenshots
 
 ![](https://github.com/Karina-00/Ships-and-Aircrafts-Simulator/blob/master/src/app/styles/screenshot1.png)
@@ -48,6 +43,3 @@ W oknie mapy jest także dostępny przycisk do zrestartowania całej symulacji.
 
 ### Uruchomienie
 `java --module-path ${PATH_TO_FX} --add-modules javafx.controls,javafx.fxml -jar Project.jar`
-
-## Uwagi
-Niestety nie udało mi się zaimplementować przepuszczania się pojazdów na skrzyżowaniach, czy oczekiwania nad lotniskiem.
